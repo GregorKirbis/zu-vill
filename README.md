@@ -1,4 +1,4 @@
-# zu-vill.si - Project Website
+# zu-vill.si - Website
 
 Welcome to the project repository for **zu-vill.si**. This website is built using PayloadCMS, a powerful and flexible content management system. This README file will guide you through the setup, development, and deployment process.
 
@@ -11,7 +11,6 @@ Welcome to the project repository for **zu-vill.si**. This website is built usin
 - [Development](#development)
 - [Deployment](#deployment)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
@@ -126,11 +125,3 @@ We welcome contributions to improve **zu-vill.si**. If you have suggestions or f
 3. Make your changes.
 4. Commit your changes and push to your branch.
 5. Create a pull request with a detailed description of your changes.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
-
-Feel free to modify this README file to better suit the specifics of your project and its requirements.
