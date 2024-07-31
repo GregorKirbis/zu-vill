@@ -1,0 +1,161 @@
+{
+  /* eslint-disable @next/next/no-img-element */
+}
+
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+import type { Header } from "../../../payload/payload-types";
+import { fetchHeader } from "../../_api/fetchGlobals";
+import { HeaderNav } from "./Nav";
+
+import classes from "./index.module.scss";
+
+export async function Header() {
+  let header: Header | null = null;
+
+  try {
+    header = await fetchHeader();
+  } catch (error) {
+    // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
+    // So swallow the error here and simply render the header without nav items if one occurs
+    // in production you may want to redirect to a 404  page or at least log the error somewhere
+    // console.error(error)
+  }
+
+  return (
+    <header className="site-header mo-left header-transparent box-header header">
+      <div className="top-bar text-black">
+        <div className="container">
+          <div className="row d-flex justify-content-between">
+            <div className="dlab-topbar-left">
+              <ul>
+                <li>
+                  <Link legacyBehavior href="/about-1">O nas</Link>
+                </li>
+                <li>
+                  <Link legacyBehavior href="/about-1">Kontakt</Link>
+                </li>
+              </ul>
+            </div>
+            <div className="dlab-topbar-right topbar-social">
+              <ul>
+                <li>
+                  <Link legacyBehavior href="#">
+                    <a className="site-button-link facebook hover">
+                      <i className="fa fa-phone"></i> +386 2 609 51 23
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link legacyBehavior href="#">
+                    <a className="site-button-link facebook hover">
+                      <i className="fa fa-envelope"></i> info@zu-vil.si
+                    </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link legacyBehavior href="#">
+                    <a className="site-button-link facebook hover">
+                      <i className="fa fa-facebook"></i>
+                    </a>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="sticky-header main-bar-wraper navbar-expand-lg">
+        <div className="main-bar clearfix">
+          <div className="container clearfix">
+            <div className="logo-header mostion">
+              <Link legacyBehavior href="/" legacyBehavior>
+                <a>
+                  <Image src="/_images/logo.png" alt="Logo" width={150} height={50} />
+                </a>
+              </Link>
+            </div>
+
+            <button className="navbar-toggler collapsed navicon justify-content-end" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+
+            <div className="extra-nav">
+              <Link legacyBehavior href="/" legacyBehavior>
+                <a className="site-button radius-no">POŠLJI POVPRAŠEVANJE</a>
+              </Link>
+            </div>
+
+            <div className="dlab-quik-search">
+              <form action="#">
+                <input name="search"  type="text" className="form-control" placeholder="Type to search" />
+                <span id="quik-search-remove">
+                  <i className="ti-close"></i>
+                </span>
+              </form>
+            </div>
+
+            <div className="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+              <div className="logo-header d-md-block d-lg-none">
+                <Link legacyBehavior href="/" legacyBehavior>
+                  <a>
+                    <Image src="/_images/logo.png" alt="Logo" width={150} height={50} />
+                  </a>
+                </Link>
+              </div>
+              <ul className="nav navbar-nav">
+                <li className="active has-mega-menu homedemo">
+                  <Link legacyBehavior href="#" legacyBehavior>
+                    <a>Domov</a>
+                  </Link>
+                </li>
+                <li className="has-mega-menu">
+                  <Link legacyBehavior href="/about-1" legacyBehavior>
+                    <a>Storitve</a>
+                  </Link>
+                </li>
+                <li className="has-mega-menu">
+                  <Link legacyBehavior href="/about-1" legacyBehavior>
+                    <a>Najem viličarjev</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link legacyBehavior href="/about-1" legacyBehavior>
+                    <a>Prodaja viličarjev</a>
+                  </Link>
+                </li>
+                <li className="has-mega-menu">
+                  <Link legacyBehavior href="/about-1" legacyBehavior>
+                    <a>Rezervni deli</a>
+                  </Link>
+                </li>
+              </ul>
+              <div className="dlab-social-icon">
+                <ul>
+                  <li>
+                    <Link legacyBehavior href="/javascript:void(0);" legacyBehavior>
+                      <a className="site-button facebook circle-sm outline fa fa-facebook"></a>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+
+/*    <header className={classes.header}>
+
+
+
+      <HeaderNav header={header} />
+    </header>*/

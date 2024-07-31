@@ -1,0 +1,44 @@
+/* Ensure the .row uses flexbox to center its children */
+.dlab-post-more {
+  display: flex;
+  justify-content: center; /* Horizontally center children */
+  align-items: center;     /* Vertically center children */
+}
+
+/* Adjust .dlab-post-meta to be centered and add padding/margins as needed */
+.dlab-post-meta {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: right;
+  margin-bottom: 0px;
+}
+
+.post-date {
+  margin-right: 10px;
+  font-size:15px
+}
+/* Ensure the row uses flexbox */
+.card-row {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping of items to the next line */
+}
+
+/* Ensures that all card containers have equal height */
+.card-container {
+  display: flex;
+  flex-direction: column; /* Makes sure the content inside the card is arranged vertically */
+  height: 100%; /* Takes up full height of its container */
+}
+
+/* Make sure each post takes full available height */
+.post {
+  display: flex;
+  flex-direction: column; /* Arrange elements vertically */
+  height: 100%; /* Stretch to fill the height of the parent */
+}
+
+/* Ensure the content inside the post stretches properly */
+.dlab-info {
+  flex: 1; /* Makes the info section take up available space */
+}

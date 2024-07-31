@@ -1,0 +1,6 @@
+.slick-prev:before {
+  content: '←' !important;
+}
+.slick-next:before {
+  content: '→' !important;
+}

@@ -1,0 +1,21 @@
+// src/components/AutocompleteInput.scss
+.autosuggest__container {
+  position: relative;
+}
+
+.autosuggest__suggestions-list {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  width: 100%;
+}
+
+.autosuggest__suggestion {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
