@@ -2,12 +2,10 @@ import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 import type { Config } from "../../payload/payload-types";
 import { PAGES } from "../_graphql/pages";
-import { POSTS } from "../_graphql/posts";
-import { PROJECTS } from "../_graphql/projects";
 import { CATALOGS } from "../_graphql/catalog";
+import { CATEGORIES } from "../_graphql/categories";
 import { GRAPHQL_API_URL } from "./shared";
 import { payloadToken } from "./token";
-import { CATEGORIES } from "../_graphql/categories";
 
 const queryMap: Record<keyof Config["collections"], { query: string; key: string }> = {
   pages: {
@@ -22,29 +20,37 @@ const queryMap: Record<keyof Config["collections"], { query: string; key: string
     query: CATEGORIES,
     key: "Categories",
   },
+  requests: {
+    query: "",  // Add the appropriate GraphQL query
+    key: "Requests",
+  },
   media: {
-    query: "",
-    key: ""
+    query: "",  // Add the appropriate GraphQL query
+    key: "Media",
   },
   users: {
-    query: "",
-    key: ""
+    query: "",  // Add the appropriate GraphQL query
+    key: "Users",
   },
   redirects: {
-    query: "",
-    key: ""
+    query: "",  // Add the appropriate GraphQL query
+    key: "Redirects",
   },
   "payload-preferences": {
-    query: "",
-    key: ""
+    query: "",  // Add the appropriate GraphQL query
+    key: "PayloadPreferences",
   },
   "payload-migrations": {
-    query: "",
-    key: ""
-  }
+    query: "",  // Add the appropriate GraphQL query
+    key: "PayloadMigrations",
+  },
 };
 
-export const fetchDocs = async <T>(collection: keyof Config["collections"], draft?: boolean, variables?: Record<string, unknown>): Promise<T[]> => {
+export const fetchDocs = async <T>(
+  collection: keyof Config["collections"],
+  draft?: boolean,
+  variables?: Record<string, unknown>
+): Promise<T[]> => {
   if (!queryMap[collection]) throw new Error(`Collection ${collection} not found`);
 
   let token: RequestCookie | undefined;

@@ -1,4 +1,3 @@
-import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { fetchDocs } from "../../../_api/fetchDocs";
 import { Category } from "../../../../payload/payload-types";
@@ -9,7 +8,6 @@ interface SidebarProps {
 }
 
 export default async function Sidebar({ slug, ...catalog }: SidebarProps & { type: string }) {
-  const { isEnabled: isDraftMode } = draftMode();
   let categories: Category[] = [];
   let baseSlug = Array.isArray(slug) ? slug[0] : slug;
 

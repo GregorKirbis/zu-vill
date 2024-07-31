@@ -3,7 +3,6 @@ import React, { Fragment } from "react";
 import { Page } from "../../../payload/payload-types.js";
 import { ArchiveBlock } from "../../_blocks/ArchiveBlock";
 import { CallToActionBlock } from "../../_blocks/CallToAction";
-import { CommentsBlock, type CommentsBlockProps } from "../../_blocks/Comments/index";
 import { ContentBlock } from "../../_blocks/Content";
 import { HomeSliderBlock } from "../../_blocks/HomeSlider";
 import { MediaBlock } from "../../_blocks/MediaBlock";
@@ -28,7 +27,6 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
-  comments: CommentsBlock,
   contactFormBlock: ContactFormBlock,
   cardBlock: CardBlock,
   servicesBigBlock: ServicesBigBlock,
@@ -41,8 +39,6 @@ export const LayoutBlock: React.FC<Props & { id?: string; }> = (props) => {
 
   const { blockType, column } = props;
   const columnArray = Array.isArray(column) ? column : [];
-
-  console.log(columnArray.column);
 
   return (
     <div className="section-full content-inner contact-page-8 bg-white">
@@ -61,7 +57,7 @@ export const LayoutBlock: React.FC<Props & { id?: string; }> = (props) => {
 
                   if (Block) {
                     return (
-                      <Block id={toKebabCase(blockName)} {...block} />
+                      <Block key={index} id={toKebabCase(blockName)} {...(block as any)} />
                     );
                   }
                 }
@@ -80,11 +76,11 @@ export const LayoutBlock: React.FC<Props & { id?: string; }> = (props) => {
 
                 if (Block) {
                   return (
-                    <Block id={toKebabCase(blockName)} {...block} />
+                    <Block key={index} id={toKebabCase(blockName)} {...(block as any)} />
                   );
                 }
               }
-              return null;
+              return <></>;
             })}
           </div>
         </div>

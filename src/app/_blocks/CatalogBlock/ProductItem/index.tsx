@@ -1,6 +1,4 @@
-import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
-import { fetchDocs } from "../../../_api/fetchDocs";
 import { Catalog, Category } from "../../../../payload/payload-types";
 import Link from 'next/link';
 import ProductGallerySlider from "./ProductGallerySlider";
@@ -29,65 +27,48 @@ type Props = {
     return `${formattedPrice} € ${add}`;
   }
 
-export default async function ProductItem({ slug }: Props & { type: string }) {
-  const { isEnabled: isDraftMode } = draftMode();
-  let baseSlug = Array.isArray(slug) ? slug[0] : slug;
-  let fetchedData: Catalog = null;
 
-  try {
-    fetchedData = await fetchDoc<any>({
-      collection: "catalog",
-      slug: slug[1],
-      draft: isDraftMode,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-
-
+// Component to render the product item
+const ProductItemComponent: React.FC<{ data: Catalog }> = ({ data }) => {
   return (
     <div className="section-full content-inner bg-white">
       <div className="container woo-entry">
         <div className="row m-b30">
           <div className="col-md-5 col-lg-5 col-sm-12 m-b30">
-            <ProductGallerySlider images={fetchedData.images} />
+            <ProductGallerySlider images={data.images as []} />
           </div>
           <div className="col-md-7 col-lg-7 col-sm-12">
             <form method="post" className="cart sticky-top">
               <div className="dlab-post-title">
                 <h4 className="post-title">
                   <Link legacyBehavior href="#">
-                    <a>{fetchedData.title}</a>
+                    <a>{data.title}</a>
                   </Link>
                 </h4>
               </div>
 
-              <table className="table table-bordered" >
+              <table className="table table-bordered">
                 <tbody>
-                  {fetchedData.additionalProperties.map((item, index) => (
-                    <tr>
+                  {data.additionalProperties.map((item, index) => (
+                    <tr key={index}>
                       <td>{item.property}</td>
                       <td>{item.value}</td>
                     </tr>
-
                   ))}
-
                 </tbody>
               </table>
 
-              <p className="m-b10">{fetchedData.description}</p>
+              <p className="m-b10">{data.description}</p>
               <div className="dlab-divider bg-gray tb15">
                 <i className="icon-dot c-square"></i>
               </div>
               <div className="relative">
-
                 <div className="shop-item-rating">
-                <button className="site-button radius-no m-tb10">
+                  <button className="site-button radius-no m-tb10">
                     <i className="ti-shopping-cart"></i> Pošlji povraševanje
                   </button>
                 </div>
-                <h3 className="m-tb15">{formatPrice(fetchedData.price, fetchedData.ddv)} </h3>
-
+                <h3 className="m-tb15">{formatPrice(data.price, data.ddv)}</h3>
               </div>
             </form>
           </div>
@@ -107,6 +88,29 @@ export default async function ProductItem({ slug }: Props & { type: string }) {
         </div>
       </div>
     </div>
-
   );
+};
+
+export default async function ProductItem({ slug }: Props & { type: string }) {
+
+  if (!slug) {
+    notFound();
+  }
+
+  let baseSlug = Array.isArray(slug) ? slug[0] : slug;
+  let fetchedData: Catalog = null;
+
+  try {
+      fetchedData = await fetchDoc<any>({
+      collection: "catalog",
+      slug: slug[1],
+      draft: false,
+    });
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
+
+
+  return <ProductItemComponent data={fetchedData} />;
 }

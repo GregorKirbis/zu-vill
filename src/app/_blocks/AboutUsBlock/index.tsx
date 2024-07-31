@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from "next/navigation";
-import { Page } from "../../../payload/payload-types";
+import { Media, Page } from "../../../payload/payload-types";
 
 
 type Props = Extract<Page["layout"][0], { blockType: "aboutUsBlock" }>;
@@ -28,7 +28,7 @@ const AboutUsBlock: React.FC<Props & { id?: string } > = ({
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6 col-sm-12 col-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.3s">
               <div className="radius-sm m-b30 img-ho1">
-                <img src={image?.url} alt={image?.alt} />
+                <img src={(image as Media)?.url} alt={(image as Media)?.alt} />
               </div>
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12 col-12 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.6s">

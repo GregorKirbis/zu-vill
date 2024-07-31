@@ -1,9 +1,7 @@
 import React, { Fragment } from "react";
-
 import { Page } from "../../../payload/payload-types.js";
 import { ArchiveBlock } from "../../_blocks/ArchiveBlock";
 import { CallToActionBlock } from "../../_blocks/CallToAction";
-import { CommentsBlock, type CommentsBlockProps } from "../../_blocks/Comments/index";
 import { ContentBlock } from "../../_blocks/Content";
 import { HomeSliderBlock } from "../../_blocks/HomeSlider";
 import { MediaBlock } from "../../_blocks/MediaBlock";
@@ -36,7 +34,6 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   archive: ArchiveBlock,
   relatedPosts: RelatedPosts,
-  comments: CommentsBlock,
   contactFormBlock: ContactFormBlock,
   layoutBlock: LayoutBlock,
   cardBlock: CardBlock,
@@ -48,7 +45,7 @@ const blockComponents = {
 };
 
 export const Blocks: React.FC<{
-  blocks: (Page["layout"][0] | RelatedPostsProps | CommentsBlockProps)[];
+  blocks: (Page["layout"][0] | RelatedPostsProps )[];
   disableTopPadding?: boolean;
   slug?: Url;
 }> = (props) => {

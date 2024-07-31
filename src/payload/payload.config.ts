@@ -13,7 +13,6 @@ import { buildConfig } from "payload/config";
 import Categories from "./collections/Categories";
 import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
-import { Product } from "./collections/Product";
 import { Catalog } from "./collections/Catalog";
 import Users from "./collections/Users";
 import BeforeLogin from "./components/BeforeLogin";

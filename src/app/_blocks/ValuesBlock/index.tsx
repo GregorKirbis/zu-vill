@@ -7,7 +7,6 @@ type Props = Extract<Page["layout"][0], { blockType: "valuesBlock" }>;
 const ValuesBlock: React.FC<Props & { id?: string }> = ({ values, image, title }) => {
 
   const valuesArray = Array.isArray(values) ? values : [];
-  console.log(image);
   return (
     <div className="section-full box-about-list">
       <div className="row spno">

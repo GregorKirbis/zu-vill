@@ -2,23 +2,15 @@
 
 import React from 'react';
 import { useRouter } from "next/navigation";
-import { Page } from "../../../payload/payload-types";
+import { Media, Page } from "../../../payload/payload-types";
 
 type Props = Extract<Page["layout"][0], { blockType: "aboutUsBigBlock" }>;
 
-const AboutUsBigBlock : React.FC<Props & { id?: string } > = ({
-  image,
-  smallTitle,
-  title,
-  caption,
-  paragraph1,
-  paragraph2,
-}) => {
-  const router = useRouter();
+const AboutUsBigBlock : React.FC<Props & { id?: string } > = ({ image, smallTitle, title, caption, paragraph1, paragraph2 }) => {
 
-  const handleButtonClick = (link: string) => {
-    router.push(link);
-  };
+  // Ensure image is of type Media
+  const imageUrl = (image as Media)?.url;
+  const imageAlt = (image as Media)?.alt;
 
   return (  <div className="section-full content-inner bg-white">
     <div className="container">
@@ -32,7 +24,7 @@ const AboutUsBigBlock : React.FC<Props & { id?: string } > = ({
                 </div>
             </div>
             <div className="col-lg-6 col-md-12 m-b30 our-story-thum">
-              <img src={image?.url} alt={image?.alt} />
+              <img src={imageUrl} alt={imageAlt} />
             </div>
         </div>
     </div>

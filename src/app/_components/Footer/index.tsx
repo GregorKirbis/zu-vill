@@ -10,8 +10,6 @@ export async function Footer() {
   try {
     footer = await fetchFooter();
 
-    console.log(footer);
-
   } catch (error) {
 
     console.error(error);
