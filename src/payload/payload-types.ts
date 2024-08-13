@@ -250,6 +250,15 @@ export interface Page {
         blockName?: string | null;
         blockType: 'valuesBlock';
       }
+    | {
+        slides: {
+          image: number | Media;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'logoSliderBlock';
+      }
   )[];
   slug?: string | null;
   parent?: (number | null) | Page;
@@ -351,13 +360,19 @@ export interface Catalog {
   additionalProperties?:
     | {
         property: string;
-        value: string;
+        value: {
+          [k: string]: unknown;
+        }[];
         id?: string | null;
       }[]
     | null;
   categories: (number | Category)[];
   offerType: 'najem' | 'prodaja' | 'oboje';
-  description?: string | null;
+  description?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;

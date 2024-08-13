@@ -6,6 +6,13 @@ export const Media: CollectionConfig = {
   slug: "media",
   upload: {
     staticDir: path.resolve(__dirname, "../../../media"),
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 90,
+        nearLossless: true,
+      },
+    },
     imageSizes: [
       {
         name: 'original',

@@ -4,3 +4,6 @@
 .slick-next:before {
   content: '→' !important;
 }
+.slick-next:hover, .slick-prev:hover {
+  background: rgba(0, 0, 0, 0.5);
+}

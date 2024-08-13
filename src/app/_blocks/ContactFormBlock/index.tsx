@@ -34,13 +34,28 @@ const ContactFormBlock: React.FC<Props & { id?: string }> = ({
     try {
       console.log('Form submitted:', formData);
       const res = await submitForm(formData);
-      alert('Form submitted successfully!');
+      /*alert('Form submitted successfully!');*/
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting contact form', error);
       alert('Failed to submit form');
     }
   };
+
+  function handleInvalid(event) {
+    // Set a custom validation message in English
+    event.target.setCustomValidity("Prosimo izpolnite to polje.");
+}
+
+function handleInvalidEmail(event) {
+  // Set a custom validation message in English
+  event.target.setCustomValidity("Vnesite veljaven e-poštni naslov.");
+}
+
+function handleInput(event) {
+    // Clear the custom validation message when user starts typing
+    event.target.setCustomValidity("");
+}
 
   return (
     <form className="inquiry-form wow fadeInUp" data-wow-delay="0.2s" onSubmit={handleSubmit}>
@@ -60,6 +75,8 @@ const ContactFormBlock: React.FC<Props & { id?: string }> = ({
                   placeholder="Ime"
                   value={formData.firstName}
                   onChange={handleChange}
+                  onInvalid={handleInvalid}
+                  onInput={handleInput}
                 />
               </div>
             </div>
@@ -76,6 +93,8 @@ const ContactFormBlock: React.FC<Props & { id?: string }> = ({
                   placeholder="Priimek"
                   value={formData.lastName}
                   onChange={handleChange}
+                  onInvalid={handleInvalid}
+                  onInput={handleInput}
                 />
               </div>
             </div>
@@ -92,6 +111,8 @@ const ContactFormBlock: React.FC<Props & { id?: string }> = ({
                   placeholder="Telefon"
                   value={formData.phone}
                   onChange={handleChange}
+                  onInvalid={handleInvalid}
+                  onInput={handleInput}
                 />
               </div>
             </div>
@@ -108,6 +129,8 @@ const ContactFormBlock: React.FC<Props & { id?: string }> = ({
                   placeholder="E-Mail"
                   value={formData.email}
                   onChange={handleChange}
+                  onInvalid={handleInvalidEmail}
+                  onInput={handleInput}
                 />
               </div>
             </div>
@@ -123,6 +146,8 @@ const ContactFormBlock: React.FC<Props & { id?: string }> = ({
                   placeholder="Sporočilo"
                   value={formData.message}
                   onChange={handleChange}
+                  onInvalid={handleInvalid}
+                  onInput={handleInput}
                 ></textarea>
               </div>
             </div>

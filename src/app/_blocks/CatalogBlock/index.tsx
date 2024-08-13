@@ -15,7 +15,7 @@ const CatalogBlock: React.FC<Props> = ({ id, slug, ...catalog }) => {
 
 
   return (
-  (!isSingle ? <ProductLitWraper  {...catalog} slug={slug} /> : <ProductItem slug={slug} /> )
+  (!isSingle ? <ProductLitWraper  {...catalog} slug={slug} /> : <ProductItem {...catalog}  slug={slug} /> )
 );
 };
 

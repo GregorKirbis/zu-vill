@@ -20,6 +20,35 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
     return pathname === path;
   };
 
+  var btn = document.querySelector('.navicon');
+  var nav = document.querySelector('.header-nav');
+
+  function toggleFunc() {
+      btn.classList.toggle("open");
+      nav.classList.toggle("show");
+  }
+
+
+  // Sidenav li open close
+  var navUl = [].slice.call(document.querySelectorAll('.header-nav > ul > li'));
+  for (var y = 0; y < navUl.length; y++) {
+      navUl[y].addEventListener('click', function () { checkLi(this) });
+  }
+
+  function checkLi(current) {
+      const active = current.classList.contains("open")
+      navUl.forEach(el => el.classList.remove('open'));
+      //current.classList.add('open');
+
+      if(active){
+          current.classList.remove('open')
+          //console.log("active")
+      } else{
+          current.classList.add('open');
+          //console.log("close")
+      }
+  }
+
 
   return (
     <header className="site-header mo-left header-transparent box-header header">
@@ -67,6 +96,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
               aria-controls="navbarNavDropdown"
               aria-expanded="false"
               aria-label="Toggle navigation"
+              onClick={toggleFunc}
             >
               <span></span>
               <span></span>

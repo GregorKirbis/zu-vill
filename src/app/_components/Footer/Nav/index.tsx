@@ -76,9 +76,9 @@ export const FooterNav: React.FC<{ footer: Footer }> = ({ footer }) => {
               <div className="col-md-6 col-sm-6 text-right ">
                 <div className="widget-link ">
                   <ul>
-                  {links.map((item, index) => (
+                  {/*{links.map((item, index) => (
                       <li key={index}><CMSLink {...item.link} appearance="none" className="" /></li>
-                    ))}
+                    ))}*/}
                   </ul>
                 </div>
               </div>

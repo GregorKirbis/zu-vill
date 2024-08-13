@@ -22,6 +22,7 @@ import  AboutUsBigBlock  from "../../_blocks/AboutUsBigBlock";
 import ValuesBlock from "../../_blocks/ValuesBlock";
 import SimpleText from "../../_blocks/SimpleText";
 import ServicesBigBlock from "../../_blocks/ServicesBigBlock";
+import { LogoSliderBlock } from "../../_blocks/LogoSliderBlock";
 
 const blockComponents = {
   catalogBlock: CatalogBlock,
@@ -41,11 +42,13 @@ const blockComponents = {
   aboutUsBigBlock: AboutUsBigBlock,
   valuesBlock: ValuesBlock,
   simpleText: SimpleText,
-  servicesBigBlock: ServicesBigBlock
+  servicesBigBlock: ServicesBigBlock,
+  logoSliderBlock:LogoSliderBlock,
 };
 
+
 export const Blocks: React.FC<{
-  blocks: (Page["layout"][0] | RelatedPostsProps )[];
+  blocks: Page["layout"][0];
   disableTopPadding?: boolean;
   slug?: Url;
 }> = (props) => {

@@ -463,7 +463,7 @@ input Page_Media_where_or {
   OR: [Page_Media_where_or]
 }
 
-union Page_Layout = HomeSlider | SimpleText | Content | MediaBlock | AboutUsBlock | AboutUsBigBlock | ContactActionBlock | ServicesBlock | ServicesBigBlock | CatalogBlock | ContactFormBlock | LayoutBlock | CardBlock | SmallCardBlock | ValuesBlock
+union Page_Layout = HomeSlider | SimpleText | Content | MediaBlock | AboutUsBlock | AboutUsBigBlock | ContactActionBlock | ServicesBlock | ServicesBigBlock | CatalogBlock | ContactFormBlock | LayoutBlock | CardBlock | SmallCardBlock | ValuesBlock | LogoSliderBlock
 
 type HomeSlider {
   slides: [HomeSlider_Slides!]!
@@ -3195,6 +3195,368 @@ type ValuesBlock_Values {
   id: String
 }
 
+type LogoSliderBlock {
+  slides: [LogoSliderBlock_Slides!]!
+  id: String
+  blockName: String
+  blockType: String
+}
+
+type LogoSliderBlock_Slides {
+  image(where: LogoSliderBlock_Slides_Image_where): Media!
+  id: String
+}
+
+input LogoSliderBlock_Slides_Image_where {
+  alt: LogoSliderBlock_Slides_Image_alt_operator
+  caption: LogoSliderBlock_Slides_Image_caption_operator
+  updatedAt: LogoSliderBlock_Slides_Image_updatedAt_operator
+  createdAt: LogoSliderBlock_Slides_Image_createdAt_operator
+  url: LogoSliderBlock_Slides_Image_url_operator
+  filename: LogoSliderBlock_Slides_Image_filename_operator
+  mimeType: LogoSliderBlock_Slides_Image_mimeType_operator
+  filesize: LogoSliderBlock_Slides_Image_filesize_operator
+  width: LogoSliderBlock_Slides_Image_width_operator
+  height: LogoSliderBlock_Slides_Image_height_operator
+  focalX: LogoSliderBlock_Slides_Image_focalX_operator
+  focalY: LogoSliderBlock_Slides_Image_focalY_operator
+  sizes__original__url: LogoSliderBlock_Slides_Image_sizes__original__url_operator
+  sizes__original__width: LogoSliderBlock_Slides_Image_sizes__original__width_operator
+  sizes__original__height: LogoSliderBlock_Slides_Image_sizes__original__height_operator
+  sizes__original__mimeType: LogoSliderBlock_Slides_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: LogoSliderBlock_Slides_Image_sizes__original__filesize_operator
+  sizes__original__filename: LogoSliderBlock_Slides_Image_sizes__original__filename_operator
+  sizes__medium__url: LogoSliderBlock_Slides_Image_sizes__medium__url_operator
+  sizes__medium__width: LogoSliderBlock_Slides_Image_sizes__medium__width_operator
+  sizes__medium__height: LogoSliderBlock_Slides_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: LogoSliderBlock_Slides_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: LogoSliderBlock_Slides_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: LogoSliderBlock_Slides_Image_sizes__medium__filename_operator
+  id: LogoSliderBlock_Slides_Image_id_operator
+  AND: [LogoSliderBlock_Slides_Image_where_and]
+  OR: [LogoSliderBlock_Slides_Image_where_or]
+}
+
+input LogoSliderBlock_Slides_Image_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input LogoSliderBlock_Slides_Image_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__original__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__original__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__original__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__original__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__original__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__original__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__medium__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__medium__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__medium__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__medium__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__medium__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_sizes__medium__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input LogoSliderBlock_Slides_Image_where_and {
+  alt: LogoSliderBlock_Slides_Image_alt_operator
+  caption: LogoSliderBlock_Slides_Image_caption_operator
+  updatedAt: LogoSliderBlock_Slides_Image_updatedAt_operator
+  createdAt: LogoSliderBlock_Slides_Image_createdAt_operator
+  url: LogoSliderBlock_Slides_Image_url_operator
+  filename: LogoSliderBlock_Slides_Image_filename_operator
+  mimeType: LogoSliderBlock_Slides_Image_mimeType_operator
+  filesize: LogoSliderBlock_Slides_Image_filesize_operator
+  width: LogoSliderBlock_Slides_Image_width_operator
+  height: LogoSliderBlock_Slides_Image_height_operator
+  focalX: LogoSliderBlock_Slides_Image_focalX_operator
+  focalY: LogoSliderBlock_Slides_Image_focalY_operator
+  sizes__original__url: LogoSliderBlock_Slides_Image_sizes__original__url_operator
+  sizes__original__width: LogoSliderBlock_Slides_Image_sizes__original__width_operator
+  sizes__original__height: LogoSliderBlock_Slides_Image_sizes__original__height_operator
+  sizes__original__mimeType: LogoSliderBlock_Slides_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: LogoSliderBlock_Slides_Image_sizes__original__filesize_operator
+  sizes__original__filename: LogoSliderBlock_Slides_Image_sizes__original__filename_operator
+  sizes__medium__url: LogoSliderBlock_Slides_Image_sizes__medium__url_operator
+  sizes__medium__width: LogoSliderBlock_Slides_Image_sizes__medium__width_operator
+  sizes__medium__height: LogoSliderBlock_Slides_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: LogoSliderBlock_Slides_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: LogoSliderBlock_Slides_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: LogoSliderBlock_Slides_Image_sizes__medium__filename_operator
+  id: LogoSliderBlock_Slides_Image_id_operator
+  AND: [LogoSliderBlock_Slides_Image_where_and]
+  OR: [LogoSliderBlock_Slides_Image_where_or]
+}
+
+input LogoSliderBlock_Slides_Image_where_or {
+  alt: LogoSliderBlock_Slides_Image_alt_operator
+  caption: LogoSliderBlock_Slides_Image_caption_operator
+  updatedAt: LogoSliderBlock_Slides_Image_updatedAt_operator
+  createdAt: LogoSliderBlock_Slides_Image_createdAt_operator
+  url: LogoSliderBlock_Slides_Image_url_operator
+  filename: LogoSliderBlock_Slides_Image_filename_operator
+  mimeType: LogoSliderBlock_Slides_Image_mimeType_operator
+  filesize: LogoSliderBlock_Slides_Image_filesize_operator
+  width: LogoSliderBlock_Slides_Image_width_operator
+  height: LogoSliderBlock_Slides_Image_height_operator
+  focalX: LogoSliderBlock_Slides_Image_focalX_operator
+  focalY: LogoSliderBlock_Slides_Image_focalY_operator
+  sizes__original__url: LogoSliderBlock_Slides_Image_sizes__original__url_operator
+  sizes__original__width: LogoSliderBlock_Slides_Image_sizes__original__width_operator
+  sizes__original__height: LogoSliderBlock_Slides_Image_sizes__original__height_operator
+  sizes__original__mimeType: LogoSliderBlock_Slides_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: LogoSliderBlock_Slides_Image_sizes__original__filesize_operator
+  sizes__original__filename: LogoSliderBlock_Slides_Image_sizes__original__filename_operator
+  sizes__medium__url: LogoSliderBlock_Slides_Image_sizes__medium__url_operator
+  sizes__medium__width: LogoSliderBlock_Slides_Image_sizes__medium__width_operator
+  sizes__medium__height: LogoSliderBlock_Slides_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: LogoSliderBlock_Slides_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: LogoSliderBlock_Slides_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: LogoSliderBlock_Slides_Image_sizes__medium__filename_operator
+  id: LogoSliderBlock_Slides_Image_id_operator
+  AND: [LogoSliderBlock_Slides_Image_where_and]
+  OR: [LogoSliderBlock_Slides_Image_where_or]
+}
+
 type Page_Breadcrumbs {
   doc(draft: Boolean): Page
   url: String
@@ -4659,7 +5021,7 @@ input PageVersion_Version_Media_where_or {
   OR: [PageVersion_Version_Media_where_or]
 }
 
-union PageVersion_Version_Layout = HomeSlider | SimpleText | Content | MediaBlock | AboutUsBlock | AboutUsBigBlock | ContactActionBlock | ServicesBlock | ServicesBigBlock | CatalogBlock | ContactFormBlock | LayoutBlock | CardBlock | SmallCardBlock | ValuesBlock
+union PageVersion_Version_Layout = HomeSlider | SimpleText | Content | MediaBlock | AboutUsBlock | AboutUsBigBlock | ContactActionBlock | ServicesBlock | ServicesBigBlock | CatalogBlock | ContactFormBlock | LayoutBlock | CardBlock | SmallCardBlock | ValuesBlock | LogoSliderBlock
 
 type PageVersion_Version_Breadcrumbs {
   doc(draft: Boolean): Page
@@ -5325,7 +5687,7 @@ type Catalog {
   additionalProperties: [Catalog_AdditionalProperties!]
   categories(draft: Boolean): [Category!]
   offerType: Catalog_offerType
-  description: String
+  description(depth: Int): JSON
   slug: String
   updatedAt: DateTime
   createdAt: DateTime
@@ -5689,7 +6051,7 @@ input Catalog_Images_Image_where_or {
 
 type Catalog_AdditionalProperties {
   property: String
-  value: String
+  value(depth: Int): JSON
   id: String
 }
 
@@ -5802,13 +6164,10 @@ input Catalog_additionalProperties__property_operator {
 }
 
 input Catalog_additionalProperties__value_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
 }
 
 input Catalog_additionalProperties__id_operator {
@@ -5845,10 +6204,10 @@ enum Catalog_offerType_Input {
 }
 
 input Catalog_description_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
   exists: Boolean
 }
 
@@ -6452,7 +6811,7 @@ type CatalogVersion_Version {
   additionalProperties: [CatalogVersion_Version_AdditionalProperties!]
   categories(draft: Boolean): [Category!]
   offerType: CatalogVersion_Version_offerType
-  description: String
+  description(depth: Int): JSON
   slug: String
   updatedAt: DateTime
   createdAt: DateTime
@@ -6816,7 +7175,7 @@ input CatalogVersion_Version_Images_Image_where_or {
 
 type CatalogVersion_Version_AdditionalProperties {
   property: String
-  value: String
+  value(depth: Int): JSON
   id: String
 }
 
@@ -6942,13 +7301,10 @@ input versionsCatalog_version__additionalProperties__property_operator {
 }
 
 input versionsCatalog_version__additionalProperties__value_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
-  in: [String]
-  not_in: [String]
-  all: [String]
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
 }
 
 input versionsCatalog_version__additionalProperties__id_operator {
@@ -6985,10 +7341,10 @@ enum versionsCatalog_version__offerType_Input {
 }
 
 input versionsCatalog_version__description_operator {
-  equals: String
-  not_equals: String
-  like: String
-  contains: String
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
   exists: Boolean
 }
 
@@ -16229,7 +16585,7 @@ input mutationCatalogInput {
   additionalProperties: [mutationCatalog_AdditionalPropertiesInput]
   categories: [Int]
   offerType: Catalog_offerType_MutationInput!
-  description: String
+  description: JSON
   slug: String
   updatedAt: String
   createdAt: String
@@ -16243,7 +16599,7 @@ input mutationCatalog_ImagesInput {
 
 input mutationCatalog_AdditionalPropertiesInput {
   property: String!
-  value: String!
+  value: JSON!
   id: String
 }
 
@@ -16267,7 +16623,7 @@ input mutationCatalogUpdateInput {
   additionalProperties: [mutationCatalogUpdate_AdditionalPropertiesInput]
   categories: [Int]
   offerType: CatalogUpdate_offerType_MutationInput
-  description: String
+  description: JSON
   slug: String
   updatedAt: String
   createdAt: String
@@ -16281,7 +16637,7 @@ input mutationCatalogUpdate_ImagesInput {
 
 input mutationCatalogUpdate_AdditionalPropertiesInput {
   property: String!
-  value: String!
+  value: JSON!
   id: String
 }
 

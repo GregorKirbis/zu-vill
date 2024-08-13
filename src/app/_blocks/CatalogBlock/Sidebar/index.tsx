@@ -14,35 +14,35 @@ export default async function Sidebar({ slug, ...catalog }: SidebarProps & { typ
   try {
 
     const fetchedData = await fetchDocs<any>('catalog', false, {
-      offerType: catalog.type,
+      offerType: [catalog.type, 'oboje'],
       categories: [],
       slug: '',
     });
 
-     const categorySet = new Set<number>(); // Set to track unique category IDs
+    const categorySet = new Set<number>(); // Set to track unique category IDs
 
-     // Extract unique categories from fetched products
-     fetchedData.forEach(product => {
-       product.categories.forEach(category => {
-         if (!categorySet.has(category.id)) {
-           categorySet.add(category.id);
-           categories.push({
-             id: category.id,
-             title: category.title,
-             slug: category.slug,
-             updatedAt: "",
-             createdAt: ""
-           });
-         }
-       });
-     });
+    // Extract unique categories from fetched products
+    fetchedData.forEach(product => {
+      product.categories.forEach(category => {
+        if (!categorySet.has(category.id)) {
+          categorySet.add(category.id);
+          categories.push({
+            id: category.id,
+            title: category.title,
+            slug: category.slug,
+            updatedAt: "",
+            createdAt: ""
+          });
+        }
+      });
+    });
   } catch (error) {
     console.error(error);
   }
 
   if (categories.length === 0) {
     // If no categories found, trigger a 404 page
-    notFound();
+    //notFound();
     return null; // Return null or an empty component if notFound is triggered
   }
 

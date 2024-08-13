@@ -5,6 +5,7 @@ import ProductGallerySlider from "./ProductGallerySlider";
 import { fetchDoc } from "../../../_api/fetchDoc";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import RichText from "../../../_components/RichText";
 type Props = {
   slug?: string;
 };
@@ -29,46 +30,54 @@ type Props = {
 
 
 // Component to render the product item
-const ProductItemComponent: React.FC<{ data: Catalog }> = ({ data }) => {
+const ProductItemComponent: React.FC<{ data: Catalog; type: string }> = ({ data, type }) => {
   return (
     <div className="section-full content-inner bg-white">
       <div className="container woo-entry">
         <div className="row m-b30">
-          <div className="col-md-5 col-lg-5 col-sm-12 m-b30">
+          <div className="col-md-12 col-lg-7 col-sm-12 m-b30">
             <ProductGallerySlider images={data.images as []} />
           </div>
-          <div className="col-md-7 col-lg-7 col-sm-12">
-            <form method="post" className="cart sticky-top">
+          <div className="col-md-12 col-lg-5 col-sm-12">
+            <form method="post" className="cart">
               <div className="dlab-post-title">
                 <h4 className="post-title">
-                  <Link legacyBehavior href="#">
-                    <a>{data.title}</a>
-                  </Link>
+
+                    {data.title}
+
                 </h4>
               </div>
-
+              <p></p>
               <table className="table table-bordered">
                 <tbody>
+                <tr >
+                      <td>Letnik</td>
+                      <td>{data.year === 0 ? 'Novo': data.year}</td>
+                </tr>
                   {data.additionalProperties.map((item, index) => (
                     <tr key={index}>
                       <td>{item.property}</td>
-                      <td>{item.value}</td>
+                      <td><RichText content={item.value} /> </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-
-              <p className="m-b10">{data.description}</p>
+                  <div>
+              <RichText content={data.description} />
+              </div>
               <div className="dlab-divider bg-gray tb15">
                 <i className="icon-dot c-square"></i>
               </div>
-              <div className="relative">
-                <div className="shop-item-rating">
-                  <button className="site-button radius-no m-tb10">
+              <div className="row">
+                <div className="col-7">
+                <h3 className="m-tb15">{type !== 'najem' ? formatPrice(data.price, data.ddv):''}</h3>
+                </div>
+                <div className="col-5">
+                <button className="site-button radius-no m-tb10">
                     <i className="ti-shopping-cart"></i> Pošlji povraševanje
                   </button>
+
                 </div>
-                <h3 className="m-tb15">{formatPrice(data.price, data.ddv)}</h3>
               </div>
             </form>
           </div>
@@ -82,7 +91,6 @@ const ProductItemComponent: React.FC<{ data: Catalog }> = ({ data }) => {
         </div>
         <div className="row">
           <div className="col-lg-12">
-            <h5 className="m-b20">Related Products</h5>
             {/* <ProductSlider /> */}
           </div>
         </div>
@@ -91,7 +99,7 @@ const ProductItemComponent: React.FC<{ data: Catalog }> = ({ data }) => {
   );
 };
 
-export default async function ProductItem({ slug }: Props & { type: string }) {
+export default async function ProductItem({ slug, ...catalog  }: Props & { type: string }) {
 
   if (!slug) {
     notFound();
@@ -112,5 +120,5 @@ export default async function ProductItem({ slug }: Props & { type: string }) {
   }
 
 
-  return <ProductItemComponent data={fetchedData} />;
+  return <ProductItemComponent data={fetchedData} type={catalog.type} />;
 }

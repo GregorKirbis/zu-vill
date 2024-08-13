@@ -10,6 +10,7 @@ import { fetchDoc } from "../../../_api/fetchDoc";
 import { ContentBlock } from "../../Content";
 
 import "./index.css";
+import { off } from "process";
 
 type Category = {
   id: number;
@@ -22,6 +23,7 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
   const [data, setData] = useState<any[]>([]); // Adjust the type as necessary
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [type, setType] = useState<string | null>(null);
 
   let baseSlug = Array.isArray(slug) ? slug[0] : slug;
 
@@ -41,13 +43,14 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
           draft: false,
         });
 
-        let categories = catalog.category ? [catalog.category.id] : [];
+        let categories = catalog.category ? [(catalog.category as Category).id] : [];
         if (categoriesT) categories = [categoriesT.id];
 
         const offerType = catalog.type === "oboje" ? undefined : catalog.type;
+        setType(offerType);
 
         const fetchedData = await fetchDocs<any>('catalog', false, {
-          offerType: offerType,
+          offerType: [offerType, 'oboje'],
           categories,
           slug: '', // Make sure to pass `slug` correctly
         });
@@ -127,8 +130,9 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
                     </div>
                     <div className="dlab-post-meta col-6">
                       <ul className="">
-                        <li className="post-date">
-                          <span>{formatPrice(item.price)}</span>
+                        <li className="post-date"><h3 className="m-tb15">
+                          {type !== 'najem' ? <span>{formatPrice(item.price)}</span>:<span></span>}
+                          </h3>
                         </li>
                       </ul>
                     </div>
@@ -136,11 +140,11 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
                 </div>
               </div>
             </div>
-          )) : <>LOADING</>}
+          )) : <div className="loader"></div>}
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default ProductList;

@@ -24,7 +24,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body id="bg">
-        <div className="App">
+        <div id="app" className="App">
           <div className="page-wraper">
             <Providers>
               {/*<AdminBar />*/}

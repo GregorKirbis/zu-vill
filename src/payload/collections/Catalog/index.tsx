@@ -8,6 +8,7 @@ import { slugField } from "../../fields/slug";
 import { NumberField } from '@nouance/payload-better-fields-plugin'
 import AutocompleteInput from '../../components/AutocompleteInput';
 import FormattedNumberField from '../../components/FormattedNumberField';
+import { slateEditor } from '@payloadcms/richtext-slate';
 
 
 const predefinedProperties = [
@@ -110,7 +111,7 @@ export const Catalog: CollectionConfig = {
       fields: [
         {
           name: 'property',
-          label: 'Property',
+          label: 'Lastnost',
           type: 'text',
           required: true,
           /*admin: {
@@ -126,8 +127,8 @@ export const Catalog: CollectionConfig = {
         },
         {
           name: 'value',
-          label: 'Value',
-          type: 'text',
+          label: 'Vrednost',
+          type: 'richText',
           required: true,
         },
       ],
@@ -169,9 +170,10 @@ export const Catalog: CollectionConfig = {
     {
       name: 'description',
       label: 'Opis',
-      type: 'textarea',
+      type: 'richText',
       required: false,
     },
     slugField(),
   ],
 };
+

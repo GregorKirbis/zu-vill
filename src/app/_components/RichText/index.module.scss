@@ -1,4 +1,13 @@
 .richText {
+
+  p {
+    margin: 0px;
+    margin-bottom: 0px;
+    span {
+      display: inline-block;
+    }
+  }
+
   :first-child {
     margin-top: 0;
   }

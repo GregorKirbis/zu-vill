@@ -20,15 +20,15 @@ export const CatalogBlock: Block = {
       type: 'select',
       options: [
         {
-          label: 'najem',
+          label: 'Najem',
           value: 'najem',
         },
         {
-          label: 'prodaja',
+          label: 'Prodaja',
           value: 'prodaja',
         },
         {
-          label: 'oboje',
+          label: 'Oboje',
           value: 'oboje',
         },
       ],

@@ -7224,6 +7224,14 @@ ol.commentlist li .meta span {
 }
 
 /* Btn Style */
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+  background: rgba(0,0,0,0.5)!important;
+}
+/* Slider */
 .btn-style-1 .slick-prev,
 .btn-style-1 .slick-next{
 	width:auto;
@@ -7234,7 +7242,7 @@ ol.commentlist li .meta span {
 }
 .btn-style-1 .slick-prev:hover,
 .btn-style-1 .slick-next:hover{
-	opacity:1;
+	/*opacity:1;*/
 }
 .btn-style-2 .slick-prev:before,
 .btn-style-1 .slick-prev:before,

@@ -106,6 +106,17 @@ export const HOME_SLIDER = `
     }
   }
 `;
+export const LOGO_SLIDER_BLOCK = `
+  ...on LogoSliderBlock {
+    blockType
+    slides {
+      image {
+        url
+        alt
+      }
+    }
+  }
+`;
 
 export const ABOUT_US_BLOCK = `
   ...on AboutUsBlock {

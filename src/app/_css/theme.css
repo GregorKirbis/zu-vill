@@ -526,7 +526,7 @@ strong {
 dl,
 ul,
 ol {
-  list-style-position: outside;
+  list-style-position: inside;
   padding: 0;
 }
 
@@ -7869,7 +7869,7 @@ a,
 .site-button,
 .site-button-secondry {
   color: #fff;
-  padding: 12px 30px;
+  padding: 12px 20px;
   display: inline-block;
   font-size: 13px;
   outline: none;

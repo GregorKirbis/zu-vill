@@ -43,11 +43,11 @@ query Catalog($slug: String, $draft: Boolean) {
 `;
 
 export const CATALOGS = `
-  query Catalog( $draft: Boolean, $categories: [JSON], $offerType: Catalog_offerType_Input ) {
+  query Catalog( $draft: Boolean, $categories: [JSON], $offerType: [Catalog_offerType_Input] ) {
     Catalogs(
       where: {
         categories: { in: $categories },
-        offerType: { equals: $offerType }
+        offerType: { in: $offerType }
       },
       limit: 100,
       draft: $draft
