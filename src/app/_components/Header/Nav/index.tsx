@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname  } from "next/navigation";
@@ -13,41 +13,15 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
   const navItems2 = header?.navItems2 || [];
   const navItems3 = header?.navItems3 || [];
 
+  const [mobile, setMobile] = useState(false);
+
 
   const pathname = usePathname();
 
-  const isActive = (path: string | undefined) => {
-    return pathname === path;
-  };
-
-  var btn = document.querySelector('.navicon');
-  var nav = document.querySelector('.header-nav');
-
-  function toggleFunc() {
-      btn.classList.toggle("open");
-      nav.classList.toggle("show");
+  function toggleFunc(p=null) {
+    setMobile(!mobile);
   }
 
-
-  // Sidenav li open close
-  var navUl = [].slice.call(document.querySelectorAll('.header-nav > ul > li'));
-  for (var y = 0; y < navUl.length; y++) {
-      navUl[y].addEventListener('click', function () { checkLi(this) });
-  }
-
-  function checkLi(current) {
-      const active = current.classList.contains("open")
-      navUl.forEach(el => el.classList.remove('open'));
-      //current.classList.add('open');
-
-      if(active){
-          current.classList.remove('open')
-          //console.log("active")
-      } else{
-          current.classList.add('open');
-          //console.log("close")
-      }
-  }
 
 
   return (
@@ -89,7 +63,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
             </div>
 
             <button
-              className="navbar-toggler collapsed navicon justify-content-end"
+              className={`navbar-toggler collapsed navicon justify-content-end ${mobile ? 'open':''}`}
               type="button"
               data-toggle="collapse"
               data-target="#navbarNavDropdown"
@@ -120,7 +94,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
               </form>
             </div>
 
-            <div className="header-nav navbar-collapse collapse justify-content-end" id="navbarNavDropdown">
+            <div className={`header-nav navbar-collapse collapse justify-content-end ${mobile? 'show':''}`} >
               <div className="logo-header d-md-block d-lg-none">
                 <Link legacyBehavior href="/">
                   <a>
@@ -132,7 +106,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
                 {navItems.map(({ link }, i) => (
                   link.display === "normal" && (
                     <li key={i} className={pathname === `/${link.reference.value.slug }` ? "active has-mega-menu " : "has-mega-menu "} >
-                      <CMSLink {...link} appearance="none" className="site-button-link facebook hover" />
+                      <CMSLink {...link} appearance="none" className="site-button-link facebook hover"  />
                     </li>
                   )
                 ))}

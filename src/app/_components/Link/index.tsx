@@ -19,7 +19,7 @@ type CMSLinkType = {
   invert?: ButtonProps["invert"];
 };
 
-export const CMSLink: React.FC<CMSLinkType> = ({ type, url, newTab, reference, label, appearance, children, className, invert }) => {
+export const CMSLink: React.FC<CMSLinkType> = ({ type, url, newTab, reference, label, appearance, children, className, invert, onClick =null }) => {
   const href = type === "reference" && typeof reference?.value === "object" && reference.value.slug ? `${reference?.relationTo !== "pages" ? `/${reference?.relationTo}` : ""}/${reference.value.slug}` : url;
 
   if (!href) return null;
@@ -37,5 +37,5 @@ export const CMSLink: React.FC<CMSLinkType> = ({ type, url, newTab, reference, l
     }
   }
 
-  return <Button className={className} newTab={newTab} href={href} appearance={appearance} label={label} invert={invert} />;
+  return <Button className={className} newTab={newTab} href={href} appearance={appearance} label={label} invert={invert} onClick={onClick?.()}/>;
 };
