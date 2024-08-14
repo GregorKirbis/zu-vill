@@ -7,7 +7,7 @@ const defaultOpenGraph: Metadata["openGraph"] = {
   description: "Specializirani za servis viličarjev in prodajo rezervnih delov. Kvalitetne storitve in vrhunski izdelki.",
   images: [
     {
-      url: "https://zu-vill.si/images/og-image.jpg", // Replace with the correct image URL
+      url: "https://zu-vill.si/_images/og_zuvill.jpg", // Replace with the correct image URL
     },
   ],
 };
