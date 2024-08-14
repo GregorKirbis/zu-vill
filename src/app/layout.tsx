@@ -8,31 +8,32 @@ import { Providers } from "./_providers";
 import { mergeOpenGraph } from "./_utilities/mergeOpenGraph";
 
 import "./_css/style.css";
-
-
-import"./_css/templete.mini.css";
+import "./_css/templete.mini.css";
 import "./_css/theme.css";
 import "./_css/skin-1.css";
 
-
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="sl" suppressHydrationWarning>
       <head>
-        <meta charSet="UTF-8"/>
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <meta charSet="UTF-8" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body id="bg">
         <div id="app" className="App">
           <div className="page-wraper">
             <Providers>
-              {/*<AdminBar />*/}
               {/* @ts-expect-error */}
-              {<Header />}
+              <Header />
               <div className="page-content bg-white">{children}</div>
               {/* @ts-expect-error */}
-              {<Footer />}
+              <Footer />
             </Providers>
           </div>
         </div>
@@ -42,10 +43,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || "https://payloadcms.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL),
+  title: "Zu-vil.si - Servis viličarjev in prodaja rezervnih delov",
   twitter: {
     card: "summary_large_image",
-    creator: "@payloadcms",
+    creator: "@gregorKirbis",
+    title: "Zu-vil.si - Servis viličarjev in prodaja rezervnih delov",
   },
   openGraph: mergeOpenGraph(),
 };

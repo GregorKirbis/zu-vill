@@ -62,7 +62,7 @@ export async function generateStaticParams() {
   }
 }
 
-export async function generateMetadata({ params: { slug = "home" } }): Promise<Metadata> {
+export async function generateMetadata({ params: { slug = "domov" } }): Promise<Metadata> {
   const { isEnabled: isDraftMode } = draftMode();
 
   let page: Page | null = null;
@@ -73,6 +73,7 @@ export async function generateMetadata({ params: { slug = "home" } }): Promise<M
       slug,
       draft: isDraftMode,
     });
+
   } catch (error) {
     // don't throw an error if the fetch fails
     // this is so that we can render static fallback pages for the demo

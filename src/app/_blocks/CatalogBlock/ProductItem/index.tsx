@@ -6,6 +6,8 @@ import { fetchDoc } from "../../../_api/fetchDoc";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import RichText from "../../../_components/RichText";
+import { Metadata } from "next";
+import { generateMeta, generateMetaCatalog } from "../../../_utilities/generateMeta";
 type Props = {
   slug?: string;
 };
@@ -108,6 +110,8 @@ export default async function ProductItem({ slug, ...catalog  }: Props & { type:
   let baseSlug = Array.isArray(slug) ? slug[0] : slug;
   let fetchedData: Catalog = null;
 
+
+
   try {
       fetchedData = await fetchDoc<any>({
       collection: "catalog",
@@ -118,7 +122,6 @@ export default async function ProductItem({ slug, ...catalog  }: Props & { type:
     console.error(error);
     notFound();
   }
-
 
   return <ProductItemComponent data={fetchedData} type={catalog.type} />;
 }

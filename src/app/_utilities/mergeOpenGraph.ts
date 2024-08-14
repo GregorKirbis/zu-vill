@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 
 const defaultOpenGraph: Metadata["openGraph"] = {
   type: "website",
-  siteName: "Payload Website Template",
-  title: "Payload Website Template",
-  description: "An open-source website built with Payload and Next.js.",
+  siteName: "Zu-vil - Servis viličarjev in prodaja rezervnih delov",
+  title: "Zu-vil.si - Servis viličarjev in prodaja rezervnih delov",
+  description: "Specializirani za servis viličarjev in prodajo rezervnih delov. Kvalitetne storitve in vrhunski izdelki.",
   images: [
     {
-      url: "https://payloadcms.com/images/og-image.jpg",
+      url: "https://zu-vill.si/images/og-image.jpg", // Replace with the correct image URL
     },
   ],
 };

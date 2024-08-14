@@ -38,6 +38,7 @@ export const PAGE = `
           ${LOGO_SLIDER_BLOCK}
         }
         ${MEDIA}
+        ${META}
       }
     }
   }
