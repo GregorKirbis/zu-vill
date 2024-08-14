@@ -59,7 +59,7 @@ const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images }) =
       </Slider>
       <div className='row'>
       {images.map((item, index) => (
-        <div key={index} className='col-3'> <Image
+        <div key={index} className='col-3 pb-2'> <Image
         onClick={() => openModal(item.image.url)}
         src={item.image.url}
         alt={`Image ${item.image.url}`}
