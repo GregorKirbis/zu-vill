@@ -53,7 +53,7 @@ export const FooterNav: React.FC<{ footer: Footer }> = ({ footer }) => {
               <div className="col-xl-4 ">
                 <div className="widget">
                   <h5 className="footer-title text-white">ZU-VIL</h5>
-                  <p className="text-capitalize m-b20">Specializirano podjetje, osredotočeno na servisiranje viličarjev. Ustanovljeno leta 1996, podjetje nudi popravila in vzdrževanje viličarjev vseh znamk, zagotavlja pa tudi rezervne dele in nadomestne viličarje med servisom.</p>
+                  <p className="m-b20">Specializirano podjetje, osredotočeno na servisiranje viličarjev. Ustanovljeno leta 1996, podjetje nudi popravila in vzdrževanje viličarjev vseh znamk, zagotavlja pa tudi rezervne dele in nadomestne viličarje med servisom.</p>
                   <div className="subscribe-form m-b20">
 
                   </div>
