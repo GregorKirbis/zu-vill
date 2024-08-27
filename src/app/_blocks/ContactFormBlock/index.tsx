@@ -164,9 +164,9 @@ function handleInput(event) {
           </div>
         </div>
       ) : (
-        <p>
+        <div>
          <div className="alert alert-success">{successMessage}</div>
-       </p>
+       </div>
       )}
     </form>
   );

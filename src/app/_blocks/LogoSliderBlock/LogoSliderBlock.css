@@ -1,0 +1,39 @@
+.logo-slider-container {
+  position: relative;
+}
+
+.logo-slider-fade-left,
+.logo-slider-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none; /* Allows clicks through the fade effect */
+}
+
+.logo-slider-fade-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(247, 249, 251, 1), rgba(247, 249, 251, 0));
+}
+
+.logo-slider-fade-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(247, 249, 251, 1), rgba(247, 249, 251, 0));
+}
+
+/* Center content inside each slide */
+.logo-slider-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure the height of the item fills the slide */
+}
+
+.logo-slider-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}

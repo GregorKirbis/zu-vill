@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import RichText from "../../../_components/RichText";
 import { Metadata } from "next";
 import { generateMeta, generateMetaCatalog } from "../../../_utilities/generateMeta";
+import SendButton from "../../../_components/SendButton";
 type Props = {
   slug?: string;
 };
@@ -75,10 +76,11 @@ const ProductItemComponent: React.FC<{ data: Catalog; type: string }> = ({ data,
                 <h3 className="m-tb15">{type !== 'najem' ? formatPrice(data.price, data.ddv):''}</h3>
                 </div>
                 <div className="col-5">
-                <button className="site-button radius-no m-tb10">
-                    <i className="ti-shopping-cart"></i> Pošlji povraševanje
-                  </button>
-
+                <SendButton
+                    className="site-button radius-no m-tb10"
+                    href="/kontakt"
+                    label="Pošlji povraševanje"
+                  />
                 </div>
               </div>
             </form>

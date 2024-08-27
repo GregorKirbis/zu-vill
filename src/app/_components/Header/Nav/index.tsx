@@ -79,8 +79,9 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
 
             <div className="extra-nav">
               {navItems.map(({ link }, i) => (
-                link.display === "highlighted" && (
+                link.display === "highlighted" && ( <>
                   <CMSLink key={i} {...link} appearance="none" className="site-button radius-no" />
+                  </>
                 )
               ))}
             </div>
@@ -106,7 +107,8 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
                 {navItems.map(({ link }, i) => (
                   link.display === "normal" && (
                     <li key={i} className={pathname === `/${link.reference.value.slug }` ? "active has-mega-menu " : "has-mega-menu "} >
-                      <CMSLink {...link} appearance="none" className="site-button-link facebook hover"  />
+
+                      <CMSLink {...link} appearance="none" className="site-button-link facebook hover" type='reference' onClick={toggleFunc}   />
                     </li>
                   )
                 ))}

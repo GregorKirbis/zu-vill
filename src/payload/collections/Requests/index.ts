@@ -8,6 +8,9 @@ export const Requests: CollectionConfig = {
     singular: 'Povraševanja',
     plural: 'Povpraševanje',
   },
+  access: {
+    create: () => true, // Allow public creation
+  },
   fields: [
     {
       name: 'firstName',

@@ -32,7 +32,6 @@ interface  mutationRequestInput {
 export async function submitForm(input: mutationRequestInput): Promise<Request> {
   try {
 
-    console.log('Form submitted:', input);
     const response = await fetch(`${GRAPHQL_API_URL}/api/graphql`, {
       method: "POST",
       headers: {
@@ -52,6 +51,22 @@ export async function submitForm(input: mutationRequestInput): Promise<Request> 
 
     if (result.errors) {
       throw new Error(result.errors[0].message || "Error submitting form");
+    }
+
+    // Send email after successful form submission
+    const emailResponse = await fetch('/api2/sendMail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ input }),
+    });
+
+
+    if (!emailResponse.ok) {
+      const emailError = await emailResponse.json();
+      console.error('Error sending email:', emailError);
+      throw new Error('Failed to send email');
     }
 
     return result.data.createRequest;

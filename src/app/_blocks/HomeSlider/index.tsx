@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 import { Page } from "../../../payload/payload-types";
 
@@ -16,10 +17,16 @@ import "../../_css/homeslider.css";
 type Props = Extract<Page["layout"][0], { blockType: "homeSlider" }>;
 
 export const HomeSliderBlock: React.FC<Props & { id?: string }> = ({ slides }) => {
+  const router = useRouter(); // Initialize the router for navigation
   const navigationPrevRef = useRef<HTMLDivElement>(null);
   const navigationNextRef = useRef<HTMLDivElement>(null);
 
-  const handleButtonClick = (link: string) => {};
+  const handleButtonClick = (link: string) => {
+    // Navigate to the specified link when a button is clicked
+    if (link) {
+      router.push(link);
+    }
+  };
 
   return (
     <Swiper

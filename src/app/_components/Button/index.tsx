@@ -27,7 +27,7 @@ export const Button: React.FC<Props> = ({ el: elFromProps = "link", label, newTa
 
   const content = <span dangerouslySetInnerHTML={{ __html: label || "" }} />;
 
-  if (onClick || type === "submit") el = "button";
+  if (onClick && type === "submit") el = "button";
 
   if (el === "link") {
     return (
