@@ -24,7 +24,7 @@ export const LogoSliderBlock: React.FC<Props & { id?: string }> = ({ slides }) =
     speed: 100,
     slidesToShow: 6,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     centerMode: true,
 
     responsive: [
