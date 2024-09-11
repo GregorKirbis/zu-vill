@@ -1,15 +1,12 @@
 const policies = {
-  "default-src": ["*"],
-  "script-src": ["*"],
-  "style-src": ["*"],
-  "font-src": ["*"],
-  "img-src": ["*"],
-  "connect-src": ["*"],
-  "frame-src": ["*"],
-  "child-src": ["*"], // Note: 'child-src' is deprecated
-  "base-uri": ["*"],
-  "form-action": ["*"],
-  "object-src": ["*"],
+  "default-src": ["'self'"],
+  "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://maps.googleapis.com", "https://*.googletagmanager.com"],
+  "child-src": ["'self'"],
+  "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+  "img-src": ["'self'", "https://raw.githubusercontent.com", "https://*.google-analytics.com", "https://*.googletagmanager.com"],
+  "font-src": ["'self'", "data:"],
+  "frame-src": ["'self'"],
+  "connect-src": ["'self'", "https://maps.googleapis.com", "https://*.google-analytics.com", "https://*.analytics.google.com", "https://*.googletagmanager.com"],
 };
 
 module.exports = Object.entries(policies)
