@@ -1,12 +1,39 @@
 const policies = {
   "default-src": ["'self'"],
-  "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://maps.googleapis.com"],
-  "child-src": ["'self'"],
-  "style-src": ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-  "img-src": ["'self'", "https://raw.githubusercontent.com"],
-  "font-src": ["'self'", "data:"],
+  "script-src": [
+    "'self'",
+    "'unsafe-inline'",
+    "'unsafe-eval'",
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com",
+    "https://maps.googleapis.com",
+  ],
+  "style-src": [
+    "'self'",
+    "'unsafe-inline'",
+    "https://fonts.googleapis.com",
+  ],
+  "font-src": [
+    "'self'",
+    "https://fonts.gstatic.com",
+    "data:",
+  ],
+  "img-src": [
+    "'self'",
+    "data:",
+    "https://www.google-analytics.com",
+  ],
+  "connect-src": [
+    "'self'",
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com",
+    "https://maps.googleapis.com",
+  ],
   "frame-src": ["'self'"],
-  "connect-src": ["'self'", "https://maps.googleapis.com"],
+  "child-src": ["'self'"], // Note: 'child-src' is deprecated in favor of 'frame-src' and 'frame-ancestors'
+  "base-uri": ["'self'"],
+  "form-action": ["'self'"],
+  "object-src": ["'none'"],
 };
 
 module.exports = Object.entries(policies)
