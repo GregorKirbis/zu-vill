@@ -24,7 +24,9 @@
     "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload/payload.config.ts payload"
   },
   "dependencies": {
+    "@next/third-parties": "^14.2.9",
     "@nouance/payload-better-fields-plugin": "^1.4.1",
+    "@nouance/payload-dashboard-analytics": "^0.3.0",
     "@payloadcms/bundler-webpack": "^1.0.0",
     "@payloadcms/db-postgres": "^0.x",
     "@payloadcms/plugin-cloud": "^3.0.0",
@@ -40,7 +42,7 @@
     "eslint-config-next": "^14.2.4",
     "express": "^4.19.2",
     "graphql-playground-middleware-express": "^1.7.23",
-    "next": "^14.2.4",
+    "next": "^14.2.9",
     "payload": "^2.0.0",
     "payload-admin-bar": "^1.0.6",
     "qs": "6.11.2",

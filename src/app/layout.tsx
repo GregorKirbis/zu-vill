@@ -6,6 +6,7 @@ import { Footer } from "./_components/Footer";
 import { Header } from "./_components/Header";
 import { Providers } from "./_providers";
 import { mergeOpenGraph } from "./_utilities/mergeOpenGraph";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import "./_css/style.css";
 import "./_css/templete.mini.css";
@@ -13,6 +14,7 @@ import "./_css/theme.css";
 import "./_css/skin-1.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="sl" suppressHydrationWarning>
       <head>
@@ -29,14 +31,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="app" className="App">
           <div className="page-wraper">
             <Providers>
-              {/* @ts-expect-error */}
+               {/* @ts-expect-error */}
               <Header />
               <div className="page-content bg-white">{children}</div>
-              {/* @ts-expect-error */}
+               {/* @ts-expect-error */}
               <Footer />
             </Providers>
           </div>
         </div>
+        <GoogleAnalytics gaId="G-PFL1NM2KSK" />
       </body>
     </html>
   );
@@ -45,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL),
   title: "Zu-vil.si - Servis viličarjev in prodaja rezervnih delov",
+  description: "Specializirani za servis viličarjev in prodajo rezervnih delov. Kvalitetne storitve in vrhunski izdelki.",
   twitter: {
     card: "summary_large_image",
     creator: "@gregorKirbis",

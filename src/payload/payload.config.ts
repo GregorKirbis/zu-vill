@@ -1,6 +1,5 @@
 import { webpackBundler } from "@payloadcms/bundler-webpack";
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { payloadCloud } from "@payloadcms/plugin-cloud";
 import nestedDocs from "@payloadcms/plugin-nested-docs";
 import redirects from "@payloadcms/plugin-redirects";
 import seo from "@payloadcms/plugin-seo";
@@ -21,13 +20,23 @@ import { Header } from "./globals/Header";
 import { Settings } from "./globals/Settings";
 import { Requests }  from "./collections/Requests";
 
+//import dashboardAnalytics from '@nouance/payload-dashboard-analytics';
+//import type { GoogleProvider } from '@nouance/payload-dashboard-analytics/dist/types/providers'
+//import AnalyticsData from "./collections/AnalyticsData";
+
 const generateTitle: GenerateTitle = () => {
-  return "My Website";
+  return "Zu-vil - Servis viličarjev in prodaja rezervnih delov";
 };
 
 dotenv.config({
   path: path.resolve(__dirname, "../../.env"),
 });
+
+/*const googleProvider: GoogleProvider = {
+  source: "google",
+  credentials: "./zu-vil-a8a55630e382.json",
+  propertyId: "457994266",
+};*/
 
 export default buildConfig({
   admin: {
@@ -83,6 +92,5 @@ export default buildConfig({
       generateTitle,
       uploadsCollection: "media",
     }),
-    payloadCloud(),
   ],
 });
