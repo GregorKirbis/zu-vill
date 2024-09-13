@@ -1,13 +1,11 @@
 import { notFound } from "next/navigation";
-import { Catalog, Category } from "../../../../payload/payload-types";
+import { Catalog } from "../../../../payload/payload-types";
 import Link from 'next/link';
 import ProductGallerySlider from "./ProductGallerySlider";
 import { fetchDoc } from "../../../_api/fetchDoc";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import RichText from "../../../_components/RichText";
-import { Metadata } from "next";
-import { generateMeta, generateMetaCatalog } from "../../../_utilities/generateMeta";
 import SendButton from "../../../_components/SendButton";
 type Props = {
   slug?: string;
@@ -112,8 +110,6 @@ export default async function ProductItem({ slug, ...catalog  }: Props & { type:
   let baseSlug = Array.isArray(slug) ? slug[0] : slug;
   let fetchedData: Catalog = null;
 
-
-
   try {
       fetchedData = await fetchDoc<any>({
       collection: "catalog",
@@ -125,5 +121,15 @@ export default async function ProductItem({ slug, ...catalog  }: Props & { type:
     notFound();
   }
 
+    // Generate metadata for the catalog item
+    //const metadata = await generateMetaCatalog(fetchedData);
+
+    if(!fetchedData)
+      notFound();
+
   return <ProductItemComponent data={fetchedData} type={catalog.type} />;
 }
+
+
+
+

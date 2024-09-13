@@ -32,7 +32,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
             <div className="dlab-topbar-left">
               <ul>
                 {navItems2.map(({ link }, i) => (
-                    <li key={i} className={""}>
+                    <li key={i+"nav2"} className={""}>
                       <div><CMSLink {...link} appearance="none" className="" /></div>
                     </li>
                 ))}
@@ -41,7 +41,7 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
             <div className="dlab-topbar-right topbar-social">
               <ul>
                 {navItems3.map(({ link }, i) => (
-                    <li key={i} className={""}>
+                    <li key={i+"nav3"} className={""}>
                       <CMSLink {...link} appearance="none" className="site-button-link facebook hover" />
                     </li>
                 ))}
@@ -79,9 +79,8 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
 
             <div className="extra-nav">
               {navItems.map(({ link }, i) => (
-                link.display === "highlighted" && ( <>
+                link.display === "highlighted" && (
                   <CMSLink key={i} {...link} appearance="none" className="site-button radius-no" />
-                  </>
                 )
               ))}
             </div>

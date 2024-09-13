@@ -7,6 +7,7 @@ import { Header } from "./_components/Header";
 import { Providers } from "./_providers";
 import { mergeOpenGraph } from "./_utilities/mergeOpenGraph";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import Head from 'next/head';
 
 import "./_css/style.css";
 import "./_css/templete.mini.css";
@@ -17,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="sl" suppressHydrationWarning>
-      <head>
+      <Head>
         <meta charSet="UTF-8" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -26,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
-      </head>
+        </Head>
       <body id="bg">
         <div id="app" className="App">
           <div className="page-wraper">
@@ -44,10 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
-export const metadata: Metadata = {
+/*export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL),
-  title: "Zu-vil.si - Servis viličarjev in prodaja rezervnih delov",
+  title: "--Zu-vil.si - Servis viličarjev in prodaja rezervnih delov",
   description: "Specializirani za servis viličarjev in prodajo rezervnih delov. Kvalitetne storitve in vrhunski izdelki.",
   twitter: {
     card: "summary_large_image",
@@ -55,4 +55,4 @@ export const metadata: Metadata = {
     title: "Zu-vil.si - Servis viličarjev in prodaja rezervnih delov",
   },
   openGraph: mergeOpenGraph(),
-};
+};*/

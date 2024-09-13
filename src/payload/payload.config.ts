@@ -24,10 +24,6 @@ import { Requests }  from "./collections/Requests";
 //import type { GoogleProvider } from '@nouance/payload-dashboard-analytics/dist/types/providers'
 //import AnalyticsData from "./collections/AnalyticsData";
 
-const generateTitle: GenerateTitle = () => {
-  return "Zu-vil - Servis viličarjev in prodaja rezervnih delov";
-};
-
 dotenv.config({
   path: path.resolve(__dirname, "../../.env"),
 });
@@ -88,8 +84,7 @@ export default buildConfig({
       collections: ["categories","pages"],
     }),
     seo({
-      collections: ["pages"],
-      generateTitle,
+      collections: ["pages", "catalog"],
       uploadsCollection: "media",
     }),
   ],

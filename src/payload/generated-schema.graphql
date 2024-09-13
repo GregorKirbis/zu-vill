@@ -5689,6 +5689,7 @@ type Catalog {
   offerType: Catalog_offerType
   description(depth: Int): JSON
   slug: String
+  meta: Catalog_Meta
   updatedAt: DateTime
   createdAt: DateTime
   _status: Catalog__status
@@ -6061,6 +6062,362 @@ enum Catalog_offerType {
   oboje
 }
 
+type Catalog_Meta {
+  title: String
+  description: String
+  image(where: Catalog_Meta_Image_where): Media
+}
+
+input Catalog_Meta_Image_where {
+  alt: Catalog_Meta_Image_alt_operator
+  caption: Catalog_Meta_Image_caption_operator
+  updatedAt: Catalog_Meta_Image_updatedAt_operator
+  createdAt: Catalog_Meta_Image_createdAt_operator
+  url: Catalog_Meta_Image_url_operator
+  filename: Catalog_Meta_Image_filename_operator
+  mimeType: Catalog_Meta_Image_mimeType_operator
+  filesize: Catalog_Meta_Image_filesize_operator
+  width: Catalog_Meta_Image_width_operator
+  height: Catalog_Meta_Image_height_operator
+  focalX: Catalog_Meta_Image_focalX_operator
+  focalY: Catalog_Meta_Image_focalY_operator
+  sizes__original__url: Catalog_Meta_Image_sizes__original__url_operator
+  sizes__original__width: Catalog_Meta_Image_sizes__original__width_operator
+  sizes__original__height: Catalog_Meta_Image_sizes__original__height_operator
+  sizes__original__mimeType: Catalog_Meta_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: Catalog_Meta_Image_sizes__original__filesize_operator
+  sizes__original__filename: Catalog_Meta_Image_sizes__original__filename_operator
+  sizes__medium__url: Catalog_Meta_Image_sizes__medium__url_operator
+  sizes__medium__width: Catalog_Meta_Image_sizes__medium__width_operator
+  sizes__medium__height: Catalog_Meta_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: Catalog_Meta_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: Catalog_Meta_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: Catalog_Meta_Image_sizes__medium__filename_operator
+  id: Catalog_Meta_Image_id_operator
+  AND: [Catalog_Meta_Image_where_and]
+  OR: [Catalog_Meta_Image_where_or]
+}
+
+input Catalog_Meta_Image_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input Catalog_Meta_Image_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__original__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__original__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__original__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__original__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__original__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__original__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__medium__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__medium__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__medium__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__medium__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__medium__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_sizes__medium__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_Meta_Image_where_and {
+  alt: Catalog_Meta_Image_alt_operator
+  caption: Catalog_Meta_Image_caption_operator
+  updatedAt: Catalog_Meta_Image_updatedAt_operator
+  createdAt: Catalog_Meta_Image_createdAt_operator
+  url: Catalog_Meta_Image_url_operator
+  filename: Catalog_Meta_Image_filename_operator
+  mimeType: Catalog_Meta_Image_mimeType_operator
+  filesize: Catalog_Meta_Image_filesize_operator
+  width: Catalog_Meta_Image_width_operator
+  height: Catalog_Meta_Image_height_operator
+  focalX: Catalog_Meta_Image_focalX_operator
+  focalY: Catalog_Meta_Image_focalY_operator
+  sizes__original__url: Catalog_Meta_Image_sizes__original__url_operator
+  sizes__original__width: Catalog_Meta_Image_sizes__original__width_operator
+  sizes__original__height: Catalog_Meta_Image_sizes__original__height_operator
+  sizes__original__mimeType: Catalog_Meta_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: Catalog_Meta_Image_sizes__original__filesize_operator
+  sizes__original__filename: Catalog_Meta_Image_sizes__original__filename_operator
+  sizes__medium__url: Catalog_Meta_Image_sizes__medium__url_operator
+  sizes__medium__width: Catalog_Meta_Image_sizes__medium__width_operator
+  sizes__medium__height: Catalog_Meta_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: Catalog_Meta_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: Catalog_Meta_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: Catalog_Meta_Image_sizes__medium__filename_operator
+  id: Catalog_Meta_Image_id_operator
+  AND: [Catalog_Meta_Image_where_and]
+  OR: [Catalog_Meta_Image_where_or]
+}
+
+input Catalog_Meta_Image_where_or {
+  alt: Catalog_Meta_Image_alt_operator
+  caption: Catalog_Meta_Image_caption_operator
+  updatedAt: Catalog_Meta_Image_updatedAt_operator
+  createdAt: Catalog_Meta_Image_createdAt_operator
+  url: Catalog_Meta_Image_url_operator
+  filename: Catalog_Meta_Image_filename_operator
+  mimeType: Catalog_Meta_Image_mimeType_operator
+  filesize: Catalog_Meta_Image_filesize_operator
+  width: Catalog_Meta_Image_width_operator
+  height: Catalog_Meta_Image_height_operator
+  focalX: Catalog_Meta_Image_focalX_operator
+  focalY: Catalog_Meta_Image_focalY_operator
+  sizes__original__url: Catalog_Meta_Image_sizes__original__url_operator
+  sizes__original__width: Catalog_Meta_Image_sizes__original__width_operator
+  sizes__original__height: Catalog_Meta_Image_sizes__original__height_operator
+  sizes__original__mimeType: Catalog_Meta_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: Catalog_Meta_Image_sizes__original__filesize_operator
+  sizes__original__filename: Catalog_Meta_Image_sizes__original__filename_operator
+  sizes__medium__url: Catalog_Meta_Image_sizes__medium__url_operator
+  sizes__medium__width: Catalog_Meta_Image_sizes__medium__width_operator
+  sizes__medium__height: Catalog_Meta_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: Catalog_Meta_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: Catalog_Meta_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: Catalog_Meta_Image_sizes__medium__filename_operator
+  id: Catalog_Meta_Image_id_operator
+  AND: [Catalog_Meta_Image_where_and]
+  OR: [Catalog_Meta_Image_where_or]
+}
+
 enum Catalog__status {
   draft
   published
@@ -6094,6 +6451,9 @@ input Catalog_where {
   offerType: Catalog_offerType_operator
   description: Catalog_description_operator
   slug: Catalog_slug_operator
+  meta__title: Catalog_meta__title_operator
+  meta__description: Catalog_meta__description_operator
+  meta__image: Catalog_meta__image_operator
   updatedAt: Catalog_updatedAt_operator
   createdAt: Catalog_createdAt_operator
   _status: Catalog__status_operator
@@ -6222,6 +6582,31 @@ input Catalog_slug_operator {
   exists: Boolean
 }
 
+input Catalog_meta__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input Catalog_meta__description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input Catalog_meta__image_operator {
+  equals: String
+  not_equals: String
+  exists: Boolean
+}
+
 input Catalog_updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -6282,6 +6667,9 @@ input Catalog_where_and {
   offerType: Catalog_offerType_operator
   description: Catalog_description_operator
   slug: Catalog_slug_operator
+  meta__title: Catalog_meta__title_operator
+  meta__description: Catalog_meta__description_operator
+  meta__image: Catalog_meta__image_operator
   updatedAt: Catalog_updatedAt_operator
   createdAt: Catalog_createdAt_operator
   _status: Catalog__status_operator
@@ -6304,6 +6692,9 @@ input Catalog_where_or {
   offerType: Catalog_offerType_operator
   description: Catalog_description_operator
   slug: Catalog_slug_operator
+  meta__title: Catalog_meta__title_operator
+  meta__description: Catalog_meta__description_operator
+  meta__image: Catalog_meta__image_operator
   updatedAt: Catalog_updatedAt_operator
   createdAt: Catalog_createdAt_operator
   _status: Catalog__status_operator
@@ -6336,6 +6727,7 @@ type CatalogDocAccessFields {
   offerType: CatalogDocAccessFields_offerType
   description: CatalogDocAccessFields_description
   slug: CatalogDocAccessFields_slug
+  meta: CatalogDocAccessFields_meta
   updatedAt: CatalogDocAccessFields_updatedAt
   createdAt: CatalogDocAccessFields_createdAt
   _status: CatalogDocAccessFields__status
@@ -6699,6 +7091,105 @@ type CatalogDocAccessFields_slug_Delete {
   permission: Boolean!
 }
 
+type CatalogDocAccessFields_meta {
+  create: CatalogDocAccessFields_meta_Create
+  read: CatalogDocAccessFields_meta_Read
+  update: CatalogDocAccessFields_meta_Update
+  delete: CatalogDocAccessFields_meta_Delete
+  fields: CatalogDocAccessFields_meta_Fields
+}
+
+type CatalogDocAccessFields_meta_Create {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_Read {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_Update {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_Delete {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_Fields {
+  title: CatalogDocAccessFields_meta_title
+  description: CatalogDocAccessFields_meta_description
+  image: CatalogDocAccessFields_meta_image
+}
+
+type CatalogDocAccessFields_meta_title {
+  create: CatalogDocAccessFields_meta_title_Create
+  read: CatalogDocAccessFields_meta_title_Read
+  update: CatalogDocAccessFields_meta_title_Update
+  delete: CatalogDocAccessFields_meta_title_Delete
+}
+
+type CatalogDocAccessFields_meta_title_Create {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_title_Read {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_title_Update {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_title_Delete {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_description {
+  create: CatalogDocAccessFields_meta_description_Create
+  read: CatalogDocAccessFields_meta_description_Read
+  update: CatalogDocAccessFields_meta_description_Update
+  delete: CatalogDocAccessFields_meta_description_Delete
+}
+
+type CatalogDocAccessFields_meta_description_Create {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_description_Read {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_description_Update {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_description_Delete {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_image {
+  create: CatalogDocAccessFields_meta_image_Create
+  read: CatalogDocAccessFields_meta_image_Read
+  update: CatalogDocAccessFields_meta_image_Update
+  delete: CatalogDocAccessFields_meta_image_Delete
+}
+
+type CatalogDocAccessFields_meta_image_Create {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_image_Read {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_image_Update {
+  permission: Boolean!
+}
+
+type CatalogDocAccessFields_meta_image_Delete {
+  permission: Boolean!
+}
+
 type CatalogDocAccessFields_updatedAt {
   create: CatalogDocAccessFields_updatedAt_Create
   read: CatalogDocAccessFields_updatedAt_Read
@@ -6813,6 +7304,7 @@ type CatalogVersion_Version {
   offerType: CatalogVersion_Version_offerType
   description(depth: Int): JSON
   slug: String
+  meta: CatalogVersion_Version_Meta
   updatedAt: DateTime
   createdAt: DateTime
   _status: CatalogVersion_Version__status
@@ -7185,6 +7677,362 @@ enum CatalogVersion_Version_offerType {
   oboje
 }
 
+type CatalogVersion_Version_Meta {
+  title: String
+  description: String
+  image(where: CatalogVersion_Version_Meta_Image_where): Media
+}
+
+input CatalogVersion_Version_Meta_Image_where {
+  alt: CatalogVersion_Version_Meta_Image_alt_operator
+  caption: CatalogVersion_Version_Meta_Image_caption_operator
+  updatedAt: CatalogVersion_Version_Meta_Image_updatedAt_operator
+  createdAt: CatalogVersion_Version_Meta_Image_createdAt_operator
+  url: CatalogVersion_Version_Meta_Image_url_operator
+  filename: CatalogVersion_Version_Meta_Image_filename_operator
+  mimeType: CatalogVersion_Version_Meta_Image_mimeType_operator
+  filesize: CatalogVersion_Version_Meta_Image_filesize_operator
+  width: CatalogVersion_Version_Meta_Image_width_operator
+  height: CatalogVersion_Version_Meta_Image_height_operator
+  focalX: CatalogVersion_Version_Meta_Image_focalX_operator
+  focalY: CatalogVersion_Version_Meta_Image_focalY_operator
+  sizes__original__url: CatalogVersion_Version_Meta_Image_sizes__original__url_operator
+  sizes__original__width: CatalogVersion_Version_Meta_Image_sizes__original__width_operator
+  sizes__original__height: CatalogVersion_Version_Meta_Image_sizes__original__height_operator
+  sizes__original__mimeType: CatalogVersion_Version_Meta_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: CatalogVersion_Version_Meta_Image_sizes__original__filesize_operator
+  sizes__original__filename: CatalogVersion_Version_Meta_Image_sizes__original__filename_operator
+  sizes__medium__url: CatalogVersion_Version_Meta_Image_sizes__medium__url_operator
+  sizes__medium__width: CatalogVersion_Version_Meta_Image_sizes__medium__width_operator
+  sizes__medium__height: CatalogVersion_Version_Meta_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: CatalogVersion_Version_Meta_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: CatalogVersion_Version_Meta_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: CatalogVersion_Version_Meta_Image_sizes__medium__filename_operator
+  id: CatalogVersion_Version_Meta_Image_id_operator
+  AND: [CatalogVersion_Version_Meta_Image_where_and]
+  OR: [CatalogVersion_Version_Meta_Image_where_or]
+}
+
+input CatalogVersion_Version_Meta_Image_alt_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+}
+
+input CatalogVersion_Version_Meta_Image_caption_operator {
+  equals: JSON
+  not_equals: JSON
+  like: JSON
+  contains: JSON
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_updatedAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_createdAt_operator {
+  equals: DateTime
+  not_equals: DateTime
+  greater_than_equal: DateTime
+  greater_than: DateTime
+  less_than_equal: DateTime
+  less_than: DateTime
+  like: DateTime
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_focalX_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_focalY_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__original__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__original__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__original__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__original__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__original__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__original__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__medium__url_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__medium__width_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__medium__height_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__medium__mimeType_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__medium__filesize_operator {
+  equals: Float
+  not_equals: Float
+  greater_than_equal: Float
+  greater_than: Float
+  less_than_equal: Float
+  less_than: Float
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_sizes__medium__filename_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_id_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input CatalogVersion_Version_Meta_Image_where_and {
+  alt: CatalogVersion_Version_Meta_Image_alt_operator
+  caption: CatalogVersion_Version_Meta_Image_caption_operator
+  updatedAt: CatalogVersion_Version_Meta_Image_updatedAt_operator
+  createdAt: CatalogVersion_Version_Meta_Image_createdAt_operator
+  url: CatalogVersion_Version_Meta_Image_url_operator
+  filename: CatalogVersion_Version_Meta_Image_filename_operator
+  mimeType: CatalogVersion_Version_Meta_Image_mimeType_operator
+  filesize: CatalogVersion_Version_Meta_Image_filesize_operator
+  width: CatalogVersion_Version_Meta_Image_width_operator
+  height: CatalogVersion_Version_Meta_Image_height_operator
+  focalX: CatalogVersion_Version_Meta_Image_focalX_operator
+  focalY: CatalogVersion_Version_Meta_Image_focalY_operator
+  sizes__original__url: CatalogVersion_Version_Meta_Image_sizes__original__url_operator
+  sizes__original__width: CatalogVersion_Version_Meta_Image_sizes__original__width_operator
+  sizes__original__height: CatalogVersion_Version_Meta_Image_sizes__original__height_operator
+  sizes__original__mimeType: CatalogVersion_Version_Meta_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: CatalogVersion_Version_Meta_Image_sizes__original__filesize_operator
+  sizes__original__filename: CatalogVersion_Version_Meta_Image_sizes__original__filename_operator
+  sizes__medium__url: CatalogVersion_Version_Meta_Image_sizes__medium__url_operator
+  sizes__medium__width: CatalogVersion_Version_Meta_Image_sizes__medium__width_operator
+  sizes__medium__height: CatalogVersion_Version_Meta_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: CatalogVersion_Version_Meta_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: CatalogVersion_Version_Meta_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: CatalogVersion_Version_Meta_Image_sizes__medium__filename_operator
+  id: CatalogVersion_Version_Meta_Image_id_operator
+  AND: [CatalogVersion_Version_Meta_Image_where_and]
+  OR: [CatalogVersion_Version_Meta_Image_where_or]
+}
+
+input CatalogVersion_Version_Meta_Image_where_or {
+  alt: CatalogVersion_Version_Meta_Image_alt_operator
+  caption: CatalogVersion_Version_Meta_Image_caption_operator
+  updatedAt: CatalogVersion_Version_Meta_Image_updatedAt_operator
+  createdAt: CatalogVersion_Version_Meta_Image_createdAt_operator
+  url: CatalogVersion_Version_Meta_Image_url_operator
+  filename: CatalogVersion_Version_Meta_Image_filename_operator
+  mimeType: CatalogVersion_Version_Meta_Image_mimeType_operator
+  filesize: CatalogVersion_Version_Meta_Image_filesize_operator
+  width: CatalogVersion_Version_Meta_Image_width_operator
+  height: CatalogVersion_Version_Meta_Image_height_operator
+  focalX: CatalogVersion_Version_Meta_Image_focalX_operator
+  focalY: CatalogVersion_Version_Meta_Image_focalY_operator
+  sizes__original__url: CatalogVersion_Version_Meta_Image_sizes__original__url_operator
+  sizes__original__width: CatalogVersion_Version_Meta_Image_sizes__original__width_operator
+  sizes__original__height: CatalogVersion_Version_Meta_Image_sizes__original__height_operator
+  sizes__original__mimeType: CatalogVersion_Version_Meta_Image_sizes__original__mimeType_operator
+  sizes__original__filesize: CatalogVersion_Version_Meta_Image_sizes__original__filesize_operator
+  sizes__original__filename: CatalogVersion_Version_Meta_Image_sizes__original__filename_operator
+  sizes__medium__url: CatalogVersion_Version_Meta_Image_sizes__medium__url_operator
+  sizes__medium__width: CatalogVersion_Version_Meta_Image_sizes__medium__width_operator
+  sizes__medium__height: CatalogVersion_Version_Meta_Image_sizes__medium__height_operator
+  sizes__medium__mimeType: CatalogVersion_Version_Meta_Image_sizes__medium__mimeType_operator
+  sizes__medium__filesize: CatalogVersion_Version_Meta_Image_sizes__medium__filesize_operator
+  sizes__medium__filename: CatalogVersion_Version_Meta_Image_sizes__medium__filename_operator
+  id: CatalogVersion_Version_Meta_Image_id_operator
+  AND: [CatalogVersion_Version_Meta_Image_where_and]
+  OR: [CatalogVersion_Version_Meta_Image_where_or]
+}
+
 enum CatalogVersion_Version__status {
   draft
   published
@@ -7219,6 +8067,9 @@ input versionsCatalog_where {
   version__offerType: versionsCatalog_version__offerType_operator
   version__description: versionsCatalog_version__description_operator
   version__slug: versionsCatalog_version__slug_operator
+  version__meta__title: versionsCatalog_version__meta__title_operator
+  version__meta__description: versionsCatalog_version__meta__description_operator
+  version__meta__image: versionsCatalog_version__meta__image_operator
   version__updatedAt: versionsCatalog_version__updatedAt_operator
   version__createdAt: versionsCatalog_version__createdAt_operator
   version___status: versionsCatalog_version___status_operator
@@ -7359,6 +8210,31 @@ input versionsCatalog_version__slug_operator {
   exists: Boolean
 }
 
+input versionsCatalog_version__meta__title_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  in: [String]
+  not_in: [String]
+  all: [String]
+  exists: Boolean
+}
+
+input versionsCatalog_version__meta__description_operator {
+  equals: String
+  not_equals: String
+  like: String
+  contains: String
+  exists: Boolean
+}
+
+input versionsCatalog_version__meta__image_operator {
+  equals: String
+  not_equals: String
+  exists: Boolean
+}
+
 input versionsCatalog_version__updatedAt_operator {
   equals: DateTime
   not_equals: DateTime
@@ -7448,6 +8324,9 @@ input versionsCatalog_where_and {
   version__offerType: versionsCatalog_version__offerType_operator
   version__description: versionsCatalog_version__description_operator
   version__slug: versionsCatalog_version__slug_operator
+  version__meta__title: versionsCatalog_version__meta__title_operator
+  version__meta__description: versionsCatalog_version__meta__description_operator
+  version__meta__image: versionsCatalog_version__meta__image_operator
   version__updatedAt: versionsCatalog_version__updatedAt_operator
   version__createdAt: versionsCatalog_version__createdAt_operator
   version___status: versionsCatalog_version___status_operator
@@ -7474,6 +8353,9 @@ input versionsCatalog_where_or {
   version__offerType: versionsCatalog_version__offerType_operator
   version__description: versionsCatalog_version__description_operator
   version__slug: versionsCatalog_version__slug_operator
+  version__meta__title: versionsCatalog_version__meta__title_operator
+  version__meta__description: versionsCatalog_version__meta__description_operator
+  version__meta__image: versionsCatalog_version__meta__image_operator
   version__updatedAt: versionsCatalog_version__updatedAt_operator
   version__createdAt: versionsCatalog_version__createdAt_operator
   version___status: versionsCatalog_version___status_operator
@@ -12816,6 +13698,7 @@ type CatalogFields {
   offerType: CatalogFields_offerType
   description: CatalogFields_description
   slug: CatalogFields_slug
+  meta: CatalogFields_meta
   updatedAt: CatalogFields_updatedAt
   createdAt: CatalogFields_createdAt
   _status: CatalogFields__status
@@ -13176,6 +14059,105 @@ type CatalogFields_slug_Update {
 }
 
 type CatalogFields_slug_Delete {
+  permission: Boolean!
+}
+
+type CatalogFields_meta {
+  create: CatalogFields_meta_Create
+  read: CatalogFields_meta_Read
+  update: CatalogFields_meta_Update
+  delete: CatalogFields_meta_Delete
+  fields: CatalogFields_meta_Fields
+}
+
+type CatalogFields_meta_Create {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_Read {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_Update {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_Delete {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_Fields {
+  title: CatalogFields_meta_title
+  description: CatalogFields_meta_description
+  image: CatalogFields_meta_image
+}
+
+type CatalogFields_meta_title {
+  create: CatalogFields_meta_title_Create
+  read: CatalogFields_meta_title_Read
+  update: CatalogFields_meta_title_Update
+  delete: CatalogFields_meta_title_Delete
+}
+
+type CatalogFields_meta_title_Create {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_title_Read {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_title_Update {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_title_Delete {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_description {
+  create: CatalogFields_meta_description_Create
+  read: CatalogFields_meta_description_Read
+  update: CatalogFields_meta_description_Update
+  delete: CatalogFields_meta_description_Delete
+}
+
+type CatalogFields_meta_description_Create {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_description_Read {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_description_Update {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_description_Delete {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_image {
+  create: CatalogFields_meta_image_Create
+  read: CatalogFields_meta_image_Read
+  update: CatalogFields_meta_image_Update
+  delete: CatalogFields_meta_image_Delete
+}
+
+type CatalogFields_meta_image_Create {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_image_Read {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_image_Update {
+  permission: Boolean!
+}
+
+type CatalogFields_meta_image_Delete {
   permission: Boolean!
 }
 
@@ -16587,6 +17569,7 @@ input mutationCatalogInput {
   offerType: Catalog_offerType_MutationInput!
   description: JSON
   slug: String
+  meta: mutationCatalog_MetaInput
   updatedAt: String
   createdAt: String
   _status: Catalog__status_MutationInput
@@ -16609,6 +17592,12 @@ enum Catalog_offerType_MutationInput {
   oboje
 }
 
+input mutationCatalog_MetaInput {
+  title: String
+  description: String
+  image: String
+}
+
 enum Catalog__status_MutationInput {
   draft
   published
@@ -16625,6 +17614,7 @@ input mutationCatalogUpdateInput {
   offerType: CatalogUpdate_offerType_MutationInput
   description: JSON
   slug: String
+  meta: mutationCatalogUpdate_MetaInput
   updatedAt: String
   createdAt: String
   _status: CatalogUpdate__status_MutationInput
@@ -16645,6 +17635,12 @@ enum CatalogUpdate_offerType_MutationInput {
   najem
   prodaja
   oboje
+}
+
+input mutationCatalogUpdate_MetaInput {
+  title: String
+  description: String
+  image: String
 }
 
 enum CatalogUpdate__status_MutationInput {

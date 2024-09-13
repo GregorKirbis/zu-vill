@@ -1,4 +1,5 @@
 import { MEDIA } from "./media";
+import { META } from "./meta";
 
 export const CATALOG = `
 query Catalog($slug: String, $draft: Boolean) {
@@ -37,6 +38,7 @@ query Catalog($slug: String, $draft: Boolean) {
           title
           slug
         }
+        ${META}
       }
     }
   }

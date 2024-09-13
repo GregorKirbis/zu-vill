@@ -55,12 +55,9 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
           slug: '', // Make sure to pass `slug` correctly
         });
 
+
         setData(fetchedData);
 
-        fetchedData.map((item, index) => {
-
-          console.log(item);
-        });
 
 
       } catch (err) {
