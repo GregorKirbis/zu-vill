@@ -8,6 +8,8 @@ const defaultOpenGraph: Metadata["openGraph"] = {
   images: [
     {
       url: "https://zu-vil.si/media/og_zuvill.webp", // Replace with the correct image URL
+      width: 1200, // Default width
+      height: 630 // Default height
     },
   ],
 };

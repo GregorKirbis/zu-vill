@@ -9,6 +9,9 @@ export const generateMeta = async (args: { doc: Page | Catalog }): Promise<Metad
     ? `${process.env.NEXT_PUBLIC_SERVER_URL}${doc.meta.image.url}`
     : undefined;
 
+  const imageWidth = 1200;  // Specify the width of the image
+  const imageHeight = 630;  // Specify the height of the image
+
   return {
     title: doc?.meta?.title || "Default Title",
     description: doc?.meta?.description || "Default description",
@@ -16,7 +19,11 @@ export const generateMeta = async (args: { doc: Page | Catalog }): Promise<Metad
       title: doc?.meta?.title || "Default Title",
       description: doc?.meta?.description || "Default description",
       url: Array.isArray(doc?.slug) ? doc?.slug.join("/") : "/",
-      images: ogImage ? [{ url: ogImage }] : undefined,
+      images: ogImage ? [{
+        url: ogImage,
+        width: imageWidth,
+        height: imageHeight
+      }] : undefined,
     }),
   };
 };
