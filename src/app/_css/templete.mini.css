@@ -7083,7 +7083,7 @@ ol.commentlist li .meta span {
 
 @media only screen and (max-width:767px) {
 	.dlab-topbar-left ul li:after {
-		right: 0
+		right: 0 !important;
 	}
 	.frame-box .footer-top {
 		padding: 40px 0 15px;

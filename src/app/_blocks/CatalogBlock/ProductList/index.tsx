@@ -56,6 +56,13 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
         });
 
         setData(fetchedData);
+
+        fetchedData.map((item, index) => {
+
+          console.log(item);
+        });
+
+
       } catch (err) {
         setError(err.message);
       } finally {
@@ -98,12 +105,11 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
                 <div className="dlab-post-media dlab-img-effect">
                   <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
                     <a>
-
-                      <Image
-                        src={item.images[0]?.image.sizes.medium?.url || ""}
-                        alt={item.name}
-                        width={item.images[0]?.image.sizes.medium?.width || 0}
-                        height={item.images[0]?.image.sizes.medium?.height || 0}
+                    <Image
+                        src={item.images[0]?.image?.url || "/path/to/placeholder.jpg"}
+                        alt={item.name || "Placeholder Image"}
+                        width={700}
+                        height={500}
                         layout="responsive"
                       />
                     </a>
@@ -118,7 +124,7 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
                     </h4>
                   </div>
                   <div className="dlab-post-text">
-                    <p>{item.categories[0].title}</p>
+                    <p>{item.categories[0].title || ""}</p>
                   </div>
                   <div className="row dlab-post-more">
                     <div className="col-6">

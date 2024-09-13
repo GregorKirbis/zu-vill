@@ -29,7 +29,7 @@ const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images }) =
 
   const settings = {
     dots: false,
-    infinite: true,
+    infinite: images.length > 2,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -40,7 +40,7 @@ const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images }) =
     <div>
       <Slider {...settings} className="m-b5 primary btn-style-2" id="sync1">
         {images.map((item, index) => (
-          <div key={index} className="item">
+          <div key={item.image.url} className="item">
             <div className="mfp-gallery">
               <div className="dlab-box">
                 <div className="dlab-thum-bx dlab-img-overlay1" onClick={() => openModal(item.image.url)}>
