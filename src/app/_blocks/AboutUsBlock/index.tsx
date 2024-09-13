@@ -3,6 +3,7 @@
 import React from 'react';
 import { useRouter } from "next/navigation";
 import { Media, Page } from "../../../payload/payload-types";
+import Image from 'next/image';
 
 
 type Props = Extract<Page["layout"][0], { blockType: "aboutUsBlock" }>;
@@ -28,7 +29,15 @@ const AboutUsBlock: React.FC<Props & { id?: string } > = ({
           <div className="row align-items-center">
             <div className="col-lg-6 col-md-6 col-sm-12 col-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.3s">
               <div className="radius-sm m-b30 img-ho1">
-                <img src={(image as Media)?.url} alt={(image as Media)?.alt} />
+              <Image
+                src={(image as Media)?.url || '/default-image.jpg'} // Fallback if image.url is not provided
+                alt={(image as Media)?.alt || 'Default image description'} // Fallback for alt text
+                width={800} // Example width, adjust as needed
+                height={600} // Example height, adjust as needed
+                objectFit="cover" // This will make sure the image is properly fitted (you can use contain or fill based on your needs)
+                quality={75} // Adjust quality to balance performance and image clarity
+                priority={true} // Optionally prioritize loading
+              />
               </div>
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12 col-12 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.6s">

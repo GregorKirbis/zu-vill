@@ -1,6 +1,6 @@
 import React from "react";
+import Image from 'next/image';
 import { Page } from "../../../payload/payload-types";
-
 
 type Props = Extract<Page["layout"][0], { blockType: "contactActionBlock" }>;
 
@@ -14,7 +14,11 @@ const ContactActionBlock: React.FC<Props & { id?: string }> = ({
   return (
     <div
       className={`section-full bg-img-fix content-inner-4 overlay-black-dark contact-action style2`}
-      style={{ backgroundImage: `url(${backgroundImage.url})` }}
+      style={{
+        backgroundImage: `url(${backgroundImage.url})`,
+        backgroundSize: 'cover',  // Ensures the image covers the container
+        backgroundPosition: 'center',  // Centers the background image
+      }}
     >
       <div className="container">
         <div className="row relative">
@@ -37,7 +41,14 @@ const ContactActionBlock: React.FC<Props & { id?: string }> = ({
             data-wow-duration="2s"
             data-wow-delay="0.2s"
           >
-            <img src={image.url} alt={image.alt} />
+            <Image
+              src={image?.url}
+              alt={image?.alt || 'Servis viličarjev'}
+              width={500}  // Set appropriate width
+              height={300} // Set appropriate height
+              objectFit="cover" // Adjust if needed
+              loading="lazy" // Lazy loading (default behavior)
+            />
           </div>
         </div>
       </div>
