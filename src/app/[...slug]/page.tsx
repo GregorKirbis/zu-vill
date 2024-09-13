@@ -21,8 +21,6 @@ export const dynamic = "force-dynamic";
 export default async function Page({ params: { slug = "domov" } }) {
   const { isEnabled: isDraftMode } = draftMode();
 
-  console.log("slug", slug);
-
   let page: Page | null = null;
   let baseSlug = Array.isArray(slug) ? slug[0] : slug;
 
@@ -85,8 +83,9 @@ export async function generateMetadata({ params: { slug = ["domov"] } }): Promis
       });
 
       page.meta.title = page.meta.title || page.title;
-      page.meta.image = page.meta.image || page.images?.[0];
+      page.meta.image = page.meta.image || page.images?.[0].image;
       page.meta.description = page.meta.description || "UGODNO!!! - " + page.title;
+
     }
 
   } catch (error) {
