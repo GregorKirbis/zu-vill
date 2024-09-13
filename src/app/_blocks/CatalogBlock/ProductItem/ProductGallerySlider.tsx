@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import Image from 'next/image';
 import Modal from 'react-modal';
 import { Media } from "../../../../payload/payload-types";
+import { blob } from 'stream/consumers';
 
 interface ProductGallerySliderProps {
   images: { image: Media }[];
@@ -43,12 +44,15 @@ const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images }) =
           <div key={item.image.url} className="item">
             <div className="mfp-gallery">
               <div className="dlab-box">
-                <div className="dlab-thum-bx dlab-img-overlay1" onClick={() => openModal(item.image.url)}>
+                <div className="dlab-thum-bx dlab-img-overlay1" style={{height:"500px", backgroundColor:"#f0f0f0"}} onClick={() => openModal(item.image.url)}>
+
+
                   <Image
                     src={item.image.url}
                     alt={`Image ${item.image.url}`}
-                    width={700}
-                    height={500}
+                       layout="fill"
+                        objectFit="contain"
+                        objectPosition="center"
                     style={{ cursor: 'pointer' }}
                   />
                 </div>
@@ -59,14 +63,18 @@ const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images }) =
       </Slider>
       <div className='row'>
       {images.map((item, index) => (
-        <div key={index} className='col-3 pb-2'> <Image
-        onClick={() => openModal(item.image.url)}
-        src={item.image.url}
-        alt={`Image ${item.image.url}`}
-        width={150}
-        height={110}
-        style={{ cursor: 'pointer' }}
-      /></div>
+        <div key={index} className="col-3 pb-2">
+        <div style={{ height: "110px", width: "150px", overflow: "hidden", display: "block" }}>
+          <Image
+            onClick={() => openModal(item.image.url)}
+            src={item.image.url}
+            alt={`Image ${item.image.url}`}
+            height={110}
+            width={150}
+            style={{ objectFit: 'cover', cursor: 'pointer', width: '100%', height: '100%' }} // Ensuring the image fully covers the container
+          />
+        </div>
+      </div>
       ))};
       </div>
       <Modal
