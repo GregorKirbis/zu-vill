@@ -102,7 +102,7 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
               <div className="blog-post blog-grid blog-rounded blog-effect1">
                 <div className="dlab-post-media dlab-img-effect">
                   <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
-                    <a style={{height:"300px", display:"block", backgroundColor:"#f0f0f0" }}>
+                    <a style={{height:"320px", display:"block", backgroundColor:"#f0f0f0" }}>
                     <Image
                         src={item.images[0]?.image?.url || "/path/to/placeholder.jpg"}
                         alt={item.name || "Placeholder Image"}

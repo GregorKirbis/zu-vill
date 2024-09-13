@@ -21,8 +21,6 @@ export const dynamic = "force-dynamic";
 export default async function Page({ params: { slug = "domov" } }) {
   const { isEnabled: isDraftMode } = draftMode();
 
-  console.log("slug", slug);
-
   let page: Page | null = null;
   let baseSlug = Array.isArray(slug) ? slug[0] : slug;
 

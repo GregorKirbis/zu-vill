@@ -32,7 +32,6 @@ const ContactFormBlock: React.FC<Props & { id?: string }> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      console.log('Form submitted:', formData);
       const res = await submitForm(formData);
       /*alert('Form submitted successfully!');*/
       setIsSubmitted(true);
