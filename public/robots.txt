@@ -1,0 +1,23 @@
+# Allow all search engines to crawl everything
+User-agent: *
+Disallow:
+
+# Block the admin pages (or other sensitive directories)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow crawling of dynamic pages
+Allow: /storitve/
+Allow: /najem-viliarjev/
+Allow: /prodaja-viliarjev/
+Allow: /rezervni-deli/
+Allow: /o-nas/
+Allow: /kontakt/
+
+
+# Block access to the Next.js API routes if you have any
+Disallow: /api/
+Disallow: /api2/
+
+# Sitemap for better crawling
+# Sitemap: https://www.example.com/sitemap.xml

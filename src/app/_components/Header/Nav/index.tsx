@@ -112,15 +112,6 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
                   )
                 ))}
               </ul>
-              <div className="dlab-social-icon">
-                <ul>
-                  <li>
-                    <Link legacyBehavior href="/javascript:void(0);">
-                      <a className="site-button facebook circle-sm outline fa fa-facebook"></a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
