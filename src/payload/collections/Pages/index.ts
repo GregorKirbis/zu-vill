@@ -20,6 +20,7 @@ import { ValuesBlock } from "../../blocks/ValuesBlock";
 import { SimpleText } from "../../blocks/SimpleText";
 import { ServicesBigBlock } from "../../blocks/ServicesBigBlock";
 import { LogoSliderBlock } from "../../blocks/LogoSliderBlock";
+import { VideoBlock } from "../../blocks/VideoBlock";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
@@ -71,7 +72,7 @@ export const Pages: CollectionConfig = {
               name: "layout",
               type: "blocks",
               required: true,
-              blocks: [HomeSlider, SimpleText, Content, MediaBlock, AboutUsBlock, AboutUsBigBlock, ContactActionBlock, ServicesBlock, ServicesBigBlock, CatalogBlock, ContactFormBlock, LayoutBlock, CardBlock, SmallCardBlock, ValuesBlock, LogoSliderBlock],
+              blocks: [HomeSlider, SimpleText, Content, MediaBlock, AboutUsBlock, AboutUsBigBlock, ContactActionBlock, ServicesBlock, ServicesBigBlock, CatalogBlock, ContactFormBlock, LayoutBlock, CardBlock, SmallCardBlock, ValuesBlock, LogoSliderBlock, VideoBlock],
             },
           ],
         },

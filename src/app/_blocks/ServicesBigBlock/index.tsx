@@ -28,7 +28,7 @@ const ServicesBigBlock: React.FC<Props & { id?: string }> = ({ title, descriptio
               </div>
             </div>
           );
-        })};
+        })}
 
 
       </div>

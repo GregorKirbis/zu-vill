@@ -2,30 +2,32 @@
 
 import React, { useEffect, useState } from "react";
 import { Page } from "../../../../payload/payload-types";
-import Link from 'next/link';
-import { fetchDocs } from '../../../_api/fetchDocs'; // Adjust the path as necessary
+import Link from "next/link";
+import { fetchDocs } from "../../../_api/fetchDocs";
 import { Url } from "next/dist/shared/lib/router/router.js";
-import Image from 'next/image';
+import Image from "next/image";
 import { fetchDoc } from "../../../_api/fetchDoc";
-import { ContentBlock } from "../../Content";
 
 import "./index.css";
-import { off } from "process";
 
 type Category = {
   id: number;
   title: string;
 };
 
-type Props = Extract<Page["layout"][0], { blockType: "catalogBlock" }> & { id?: string, slug?: Url };
+type Props = Extract<Page["layout"][0], { blockType: "catalogBlock" }> & {
+  id?: string;
+  slug?: Url;
+};
 
 const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
-  const [data, setData] = useState<any[]>([]); // Adjust the type as necessary
+  const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [type, setType] = useState<string | null>(null);
+  const [activeCategoryName, setActiveCategoryName] = useState<string>("");
 
-  let baseSlug = Array.isArray(slug) ? slug[0] : slug;
+  const baseSlug = Array.isArray(slug) ? slug[0] : slug;
 
   useEffect(() => {
     const loadData = async () => {
@@ -33,36 +35,39 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
         setLoading(true);
         setError(null);
 
-        let categorySlug = '';
-        if (Array.isArray(slug))
-          categorySlug = (slug[1] === 'c') ? slug[2] : '';
+        let categorySlug = "";
+        if (Array.isArray(slug)) {
+          categorySlug = slug[1] === "c" ? slug[2] : "";
+        }
 
-        const categoriesT = await fetchDoc<Category>({
-          collection: "categories",
-          slug: categorySlug,
-          draft: false,
-        });
+        const categoriesT = categorySlug
+          ? await fetchDoc<Category>({
+              collection: "categories",
+              slug: categorySlug,
+              draft: false,
+            })
+          : null;
 
         let categories = catalog.category ? [(catalog.category as Category).id] : [];
-        if (categoriesT) categories = [categoriesT.id];
+        if (categoriesT) {
+          categories = [categoriesT.id];
+          setActiveCategoryName(categoriesT.title || "");
+        } else {
+          setActiveCategoryName("");
+        }
 
         const offerType = catalog.type === "oboje" ? undefined : catalog.type;
-        setType(offerType);
+        setType(offerType || null);
 
-        const fetchedData = await fetchDocs<any>('catalog', false, {
-          offerType: [offerType, 'oboje'],
+        const fetchedData = await fetchDocs<any>("catalog", false, {
+          offerType: [offerType, "oboje"],
           categories,
-          slug: '', // Make sure to pass `slug` correctly
+          slug: "",
         });
 
-
-
-        setData(fetchedData);
-
-
-
+        setData(Array.isArray(fetchedData) ? fetchedData : []);
       } catch (err) {
-        setError(err.message);
+        setError(err?.message || "Napaka pri nalaganju kataloga.");
       } finally {
         setLoading(false);
       }
@@ -71,84 +76,139 @@ const ProductList: React.FC<Props> = ({ id, slug, ...catalog }) => {
     loadData();
   }, [id, catalog.category, catalog.type, slug]);
 
-  // Function to format price
-  function formatPrice(price) {
-    // Convert price to a number
+  function formatPrice(price: any) {
     const numberPrice = parseFloat(price);
-
-    // Format number with thousands separator
-    const formattedPrice = numberPrice.toLocaleString('de-DE', {
-      minimumFractionDigits: 0, // No decimal places
-      maximumFractionDigits: 0
+    const formattedPrice = numberPrice.toLocaleString("de-DE", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
     });
 
-    if (formattedPrice === "NaN" || formattedPrice === "0") return "Cena po dogovoru";
+    if (formattedPrice === "NaN" || formattedPrice === "0") {
+      return "Cena po dogovoru";
+    }
 
-    // Append currency symbol (e.g., Euro sign)
     return `${formattedPrice} €`;
   }
 
+  if (error) {
+    return (
+      <div className="col-lg-9 col-md-8">
+        <div className="catalog-empty">
+          <h4>Napaka pri nalaganju ponudbe</h4>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
 
-
-
-  if (error) return <div>Error: {error}</div>;
+  const isNajem = type === "najem";
 
   return (
-    <div className="col-lg-9 col-md-7">
+    <div className="col-lg-9 col-md-8">
+      <div className="catalog-toolbar">
+        <div>
+          <span className="catalog-toolbar-label">
+            {activeCategoryName ? activeCategoryName : isNajem ? "Ponudba za najem" : "Ponudba za prodajo"}
+          </span>
+        </div>
+        {!loading && (
+          <div className="catalog-toolbar-count">
+            Prikazanih: <strong>{data.length}</strong>
+          </div>
+        )}
+      </div>
+
       <div id="masonry" className="dlab-blog-grid-2">
-        <div className="row card-row" style={{ minHeight: "800px" }}>
-          {!loading ? data.map((item, index) => (
-            <div key={index} className="post card-container col-lg-6 col-md-12 col-sm-12">
-              <div className="blog-post blog-grid blog-rounded blog-effect1">
-                <div className="dlab-post-media dlab-img-effect">
-                  <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
-                    <a style={{height:"320px", display:"block", backgroundColor:"#f0f0f0" }}>
-                    <Image
-                        src={item.images[0]?.image?.url || "/path/to/placeholder.jpg"}
-                        alt={item.name || "Placeholder Image"}
-                        layout="fill"
-                        objectFit="contain"
-                        objectPosition="center"
-                      />
-                    </a>
-                  </Link>
-                </div>
-                <div className="dlab-info p-a20 border-1">
-                  <div className="dlab-post-title">
-                    <h4 className="post-title">
-                      <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
-                        <a>{item.title}</a>
-                      </Link>
-                    </h4>
-                  </div>
-                  <div className="dlab-post-text">
-                    <p>{item.categories[0].title || ""}</p>
-                  </div>
-                  <div className="row dlab-post-more">
-                    <div className="col-6">
-                      <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
-                        <a title="READ MORE" rel="bookmark" className="site-button">
-                          PREBERI VEČ <i className="ti-arrow-right"></i>
-                        </a>
-                      </Link>
-                    </div>
-                    <div className="dlab-post-meta col-6">
-                      <ul className="">
-                        <li className="post-date"><h3 className="m-tb15">
-                          {type !== 'najem' ? <span>{formatPrice(item.price)}</span>:<span></span>}
-                          </h3>
-                        </li>
-                      </ul>
-                    </div>
+        <div className="row g-4 card-row">
+          {loading ? (
+            [0, 1, 2, 3].map((n) => (
+              <div key={n} className="col-lg-6 col-md-12 col-sm-12 d-flex">
+                <div className="catalog-card catalog-skeleton w-100">
+                  <div className="skeleton-img" />
+                  <div className="catalog-card-body">
+                    <div className="skeleton-line short" />
+                    <div className="skeleton-line title" />
+                    <div className="skeleton-line btn" />
                   </div>
                 </div>
               </div>
+            ))
+          ) : data.length === 0 ? (
+            <div className="col-12">
+              <div className="catalog-empty">
+                <h4>Trenutno ni viličarjev v tej kategoriji</h4>
+                <p>
+                  Za aktualno zalogo in ponudbo po meri nas kontaktirajte na{" "}
+                  <strong>info@zu-vil.si</strong> ali pokličite <strong>+386 2 609 51 23</strong>.
+                </p>
+                <Link href="/kontakt" legacyBehavior>
+                  <a className="site-button">POŠLJI POVPRAŠEVANJE</a>
+                </Link>
+              </div>
             </div>
-          )) : <div className="loader"></div>}
+          ) : (
+            data.map((item, index) => {
+              const categoryTitle = item.categories?.[0]?.title || "";
+              const imgUrl = item.images?.[0]?.image?.url || "/_images/logo.png";
+
+              return (
+                <div
+                  key={item.id || index}
+                  className="col-lg-6 col-md-12 col-sm-12 d-flex"
+                >
+                  <div className="catalog-card w-100">
+                    <div className="catalog-card-media">
+                      <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
+                        <a className="catalog-card-img-link">
+                          <Image
+                            src={imgUrl}
+                            alt={item.title || "Viličar"}
+                            layout="fill"
+                            objectFit="contain"
+                            objectPosition="center"
+                          />
+                        </a>
+                      </Link>
+                      {categoryTitle && (
+                        <span className="catalog-cat-badge">{categoryTitle}</span>
+                      )}
+                    </div>
+
+                    <div className="catalog-card-body">
+                      <h4 className="catalog-card-title">
+                        <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
+                          <a>{item.title}</a>
+                        </Link>
+                      </h4>
+
+                      <div className="catalog-card-footer">
+                        <Link href={`/${baseSlug}/${item.slug}`} legacyBehavior>
+                          <a
+                            title={item.title}
+                            rel="bookmark"
+                            className={`site-button catalog-cta-btn ${isNajem ? "w-100 text-center" : ""}`}
+                          >
+                            {isNajem ? "PODROBNOSTI IN NAJEM" : "PREBERI VEČ"}{" "}
+                            <i className="ti-arrow-right"></i>
+                          </a>
+                        </Link>
+
+                        {!isNajem && (
+                          <div className="catalog-price">
+                            {formatPrice(item.price)}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ProductList;

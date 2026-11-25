@@ -23,6 +23,7 @@ import ValuesBlock from "../../_blocks/ValuesBlock";
 import SimpleText from "../../_blocks/SimpleText";
 import ServicesBigBlock from "../../_blocks/ServicesBigBlock";
 import { LogoSliderBlock } from "../../_blocks/LogoSliderBlock";
+import { VideoBlock } from "../../_blocks/VideoBlock";
 
 const blockComponents = {
   catalogBlock: CatalogBlock,
@@ -44,6 +45,7 @@ const blockComponents = {
   simpleText: SimpleText,
   servicesBigBlock: ServicesBigBlock,
   logoSliderBlock:LogoSliderBlock,
+  videoBlock: VideoBlock,
 };
 
 

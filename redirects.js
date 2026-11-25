@@ -17,6 +17,12 @@ module.exports = async () => {
     destination: "/ie-incompatible.html",
   };
 
+  const storitveToServisRedirect = {
+    source: "/storitve",
+    destination: "/servis",
+    permanent: true,
+  };
+
   try {
     const redirectsRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/redirects?limit=1000&depth=1`);
 
@@ -57,7 +63,7 @@ module.exports = async () => {
       });
     }
 
-    const redirects = [internetExplorerRedirect, ...dynamicRedirects];
+    const redirects = [internetExplorerRedirect, storitveToServisRedirect, ...dynamicRedirects];
 
     return redirects;
   } catch (error) {
@@ -65,6 +71,6 @@ module.exports = async () => {
       console.error(`Error configuring redirects: ${error}`); // eslint-disable-line no-console
     }
 
-    return [];
+    return [storitveToServisRedirect];
   }
 };

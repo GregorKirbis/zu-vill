@@ -52,16 +52,6 @@ export default async function Page({ params: { slug = "domov" } }) {
   );
 }
 
-export async function generateStaticParams() {
-  try {
-    const pages = await fetchDocs<Page>("pages");
-    return pages?.map(({ slug }) => slug);
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
 export async function generateMetadata({ params: { slug = ["domov"] } }): Promise<Metadata> {
   const { isEnabled: isDraftMode } = draftMode();
 

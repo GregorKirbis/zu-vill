@@ -55,10 +55,16 @@ export default async function Page({ params: { slug = "domov" } }) {
 export async function generateStaticParams() {
   try {
     const pages = await fetchDocs<Page>("pages");
-    return pages?.map(({ slug }) => slug);
+    return (
+      pages
+        ?.filter(({ slug }) => Boolean(slug))
+        .map(({ slug }) => ({
+          slug: slug.split("/").filter(Boolean),
+        })) || []
+    );
   } catch (error) {
     console.error(error);
-    return null;
+    return [];
   }
 }
 

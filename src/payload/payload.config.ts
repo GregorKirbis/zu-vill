@@ -75,6 +75,14 @@ export default buildConfig({
   },
   cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
   csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ""].filter(Boolean),
+  rateLimit: {
+    max: 5000,
+    trustProxy: true,
+    skip: (req) => {
+      const ip = req?.ip || "";
+      return ip === "127.0.0.1" || ip === "::1" || ip === "::ffff:127.0.0.1";
+    },
+  },
   endpoints: [],
   plugins: [
     redirects({

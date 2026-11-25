@@ -199,6 +199,16 @@ export const SMALL_CARD_BLOCK = `
   }
 `;
 
+export const VIDEO_BLOCK = `
+  ...on VideoBlock {
+    blockType
+    smallTitle
+    title
+    description
+    youtubeUrl
+  }
+`;
+
 export const LAYOUT_BLOCK = `
 ...on LayoutBlock {
   blockType

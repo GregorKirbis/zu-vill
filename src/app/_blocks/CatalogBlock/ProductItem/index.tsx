@@ -1,99 +1,123 @@
 import { notFound } from "next/navigation";
 import { Catalog } from "../../../../payload/payload-types";
-import Link from 'next/link';
+import Link from "next/link";
 import ProductGallerySlider from "./ProductGallerySlider";
 import { fetchDoc } from "../../../_api/fetchDoc";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import "./index.css";
 import RichText from "../../../_components/RichText";
 import SendButton from "../../../_components/SendButton";
+
 type Props = {
-  slug?: string;
+  slug?: string | string[];
 };
 
-  // Function to format price
-  function formatPrice(price, ddv= true) {
-    // Convert price to a number
-    const numberPrice = parseFloat(price);
-    const add = ddv ? "+ DDV" : "";
+function formatPrice(price: any, ddv = true) {
+  const numberPrice = parseFloat(price);
+  const add = ddv ? "+ DDV" : "";
 
-    // Format number with thousands separator
-    const formattedPrice = numberPrice.toLocaleString('de-DE', {
-      minimumFractionDigits: 2, // No decimal places
-      maximumFractionDigits: 2
-    });
+  const formattedPrice = numberPrice.toLocaleString("de-DE", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
-    if (formattedPrice === "NaN" || formattedPrice === "0,00") return "Cena po dogovoru";
-
-    // Append currency symbol (e.g., Euro sign)
-    return `${formattedPrice} € ${add}`;
+  if (formattedPrice === "NaN" || formattedPrice === "0,00") {
+    return "Cena po dogovoru";
   }
 
+  return `${formattedPrice} € ${add}`.trim();
+}
 
-// Component to render the product item
-const ProductItemComponent: React.FC<{ data: Catalog; type: string }> = ({ data, type }) => {
+const ProductItemComponent: React.FC<{
+  data: Catalog;
+  type: string;
+  baseSlug: string;
+}> = ({ data, type, baseSlug }) => {
+  const isNajem = type === "najem";
+  const categoryTitle =
+    Array.isArray(data.categories) && data.categories.length > 0
+      ? (data.categories[0] as any)?.title || ""
+      : "";
+  const backLabel = isNajem
+    ? "Nazaj na najem viličarjev"
+    : "Nazaj na prodajo viličarjev";
+
   return (
-    <div className="section-full content-inner bg-white">
+    <div className="section-full content-inner bg-white product-detail-section">
       <div className="container woo-entry">
-        <div className="row m-b30">
-          <div className="col-md-12 col-lg-7 col-sm-12 m-b30">
-            <ProductGallerySlider images={data.images as []} />
+        <div className="product-detail-topbar">
+          <Link href={`/${baseSlug}`} legacyBehavior>
+            <a className="product-back-link">
+              <i className="ti-arrow-left"></i> {backLabel}
+            </a>
+          </Link>
+          {categoryTitle && (
+            <span className="product-detail-badge">{categoryTitle}</span>
+          )}
+        </div>
+
+        <div className="row g-4 align-items-start m-b30">
+          <div className="col-md-12 col-lg-7 col-sm-12">
+            <ProductGallerySlider images={(data.images as any) || []} />
           </div>
+
           <div className="col-md-12 col-lg-5 col-sm-12">
-            <form method="post" className="cart">
-              <div className="dlab-post-title">
-                <h4 className="post-title">
-
-                    {data.title}
-
-                </h4>
+            <div className="product-info-card">
+              <div className="product-info-header">
+                {categoryTitle && (
+                  <span className="product-info-kicker">{categoryTitle}</span>
+                )}
+                <h2 className="product-info-title">{data.title}</h2>
               </div>
-              <p></p>
-              <table className="table table-bordered">
-                <tbody>
-                <tr >
-                      <td>Letnik</td>
-                      <td>{data.year === 0 ? 'Novo': data.year}</td>
-                </tr>
-                  {data.additionalProperties.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.property}</td>
-                      <td><RichText content={item.value} /> </td>
+
+              <div className="product-specs-wrap">
+                <table className="table product-specs-table">
+                  <tbody>
+                    <tr>
+                      <th>Letnik</th>
+                      <td>{data.year === 0 ? "Novo" : data.year}</td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-                  <div>
-              <RichText content={data.description} />
+                    {(data.additionalProperties || []).map((item, index) => (
+                      <tr key={index}>
+                        <th>{item.property}</th>
+                        <td>
+                          <RichText content={item.value} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <div className="dlab-divider bg-gray tb15">
-                <i className="icon-dot c-square"></i>
-              </div>
-              <div className="row">
-                <div className="col-7">
-                <h3 className="m-tb15">{type !== 'najem' ? formatPrice(data.price, data.ddv):''}</h3>
+
+              {data.description && (
+                <div className="product-description-box">
+                  <RichText content={data.description} />
                 </div>
-                <div className="col-5">
-                <SendButton
-                    className="site-button radius-no m-tb10"
+              )}
+
+              <div className="product-cta-box">
+                {!isNajem && (
+                  <div className="product-price-block">
+                    <span className="product-price-label">Cena</span>
+                    <div className="product-price-value">
+                      {formatPrice(data.price, data.ddv)}
+                    </div>
+                  </div>
+                )}
+
+                <div className="product-cta-actions">
+                  <SendButton
+                    className="site-button radius-no w-100 text-center"
                     href="/kontakt"
-                    label="Pošlji povraševanje"
+                    label={isNajem ? "POŠLJI POVPRAŠEVANJE ZA NAJEM" : "POŠLJI POVPRAŠEVANJE"}
                   />
+                  <a href="tel:+38626095123" className="product-call-link">
+                    <i className="fa fa-phone"></i> Ali pokličite: <strong>+386 2 609 51 23</strong>
+                  </a>
                 </div>
               </div>
-            </form>
-          </div>
-        </div>
-        <div className="row m-b30">
-          <div className="col-lg-12">
-            <div className="dlab-tabs product-description tabs-site-button">
-              {/* Tabs content would go here */}
             </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-12">
-            {/* <ProductSlider /> */}
           </div>
         </div>
       </div>
@@ -101,19 +125,22 @@ const ProductItemComponent: React.FC<{ data: Catalog; type: string }> = ({ data,
   );
 };
 
-export default async function ProductItem({ slug, ...catalog  }: Props & { type: string }) {
-
+export default async function ProductItem({
+  slug,
+  ...catalog
+}: Props & { type: string }) {
   if (!slug) {
     notFound();
   }
 
-  let baseSlug = Array.isArray(slug) ? slug[0] : slug;
-  let fetchedData: Catalog = null;
+  const baseSlug = Array.isArray(slug) ? slug[0] : slug;
+  const itemSlug = Array.isArray(slug) ? slug[1] : slug;
+  let fetchedData: Catalog | null = null;
 
   try {
-      fetchedData = await fetchDoc<any>({
+    fetchedData = await fetchDoc<any>({
       collection: "catalog",
-      slug: slug[1],
+      slug: itemSlug,
       draft: false,
     });
   } catch (error) {
@@ -121,15 +148,15 @@ export default async function ProductItem({ slug, ...catalog  }: Props & { type:
     notFound();
   }
 
-    // Generate metadata for the catalog item
-    //const metadata = await generateMetaCatalog(fetchedData);
+  if (!fetchedData) {
+    notFound();
+  }
 
-    if(!fetchedData)
-      notFound();
-
-  return <ProductItemComponent data={fetchedData} type={catalog.type} />;
+  return (
+    <ProductItemComponent
+      data={fetchedData}
+      type={catalog.type}
+      baseSlug={baseSlug}
+    />
+  );
 }
-
-
-
-

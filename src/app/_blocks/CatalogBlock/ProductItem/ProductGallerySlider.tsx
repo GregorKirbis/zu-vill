@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
-import Image from 'next/image';
-import Modal from 'react-modal';
+import Image from "next/image";
+import Modal from "react-modal";
 import { Media } from "../../../../payload/payload-types";
-import { blob } from 'stream/consumers';
 
 interface ProductGallerySliderProps {
   images: { image: Media }[];
@@ -13,11 +12,15 @@ interface ProductGallerySliderProps {
 
 const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState('');
+  const [currentImage, setCurrentImage] = useState("");
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sliderRef = useRef<Slider | null>(null);
 
   useEffect(() => {
-    Modal.setAppElement('#app'); // Ensure this matches the ID in your HTML structure
+    Modal.setAppElement("#app");
   }, []);
+
+  const validImages = (images || []).filter((item) => item?.image?.url);
 
   const openModal = (image: string) => {
     setCurrentImage(image);
@@ -28,113 +31,141 @@ const ProductGallerySlider: React.FC<ProductGallerySliderProps> = ({ images }) =
     setModalIsOpen(false);
   };
 
+  const handleThumbClick = (index: number) => {
+    setActiveIndex(index);
+    sliderRef.current?.slickGoTo(index);
+  };
+
   const settings = {
     dots: false,
-    infinite: images.length > 2,
-    speed: 500,
+    infinite: validImages.length > 1,
+    speed: 400,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
+    beforeChange: (_current: number, next: number) => setActiveIndex(next),
   };
+
+  if (validImages.length === 0) {
+    return (
+      <div className="product-gallery-main d-flex align-items-center justify-content-center">
+        <span style={{ color: "#888" }}>Ni fotografij</span>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <Slider {...settings} className="m-b5 primary btn-style-2" id="sync1">
-        {images.map((item, index) => (
-          <div key={item.image.url} className="item">
-            <div className="mfp-gallery">
-              <div className="dlab-box">
-                <div className="dlab-thum-bx dlab-img-overlay1" style={{height:"500px", backgroundColor:"#f0f0f0"}} onClick={() => openModal(item.image.url)}>
-
-
-                  <Image
-                    src={item.image.url}
-                    alt={`Image ${item.image.url}`}
-                       layout="fill"
-                        objectFit="contain"
-                        objectPosition="center"
-                    style={{ cursor: 'pointer' }}
-                  />
-                </div>
-              </div>
+      <Slider
+        ref={sliderRef}
+        {...settings}
+        className="m-b5 primary btn-style-2"
+        id="sync1"
+      >
+        {validImages.map((item, index) => (
+          <div key={item.image.url || index} className="item">
+            <div
+              className="product-gallery-main"
+              onClick={() => openModal(item.image.url)}
+            >
+              <Image
+                src={item.image.url}
+                alt={item.image.alt || `Slika ${index + 1}`}
+                layout="fill"
+                objectFit="contain"
+                objectPosition="center"
+              />
             </div>
           </div>
         ))}
       </Slider>
-      <div className='row'>
-      {images.map((item, index) => (
-        <div key={index} className="col-3 pb-2">
-        <div style={{ height: "110px", width: "150px", overflow: "hidden", display: "block" }}>
-          <Image
-            onClick={() => openModal(item.image.url)}
-            src={item.image.url}
-            alt={`Image ${item.image.url}`}
-            height={110}
-            width={150}
-            style={{ objectFit: 'cover', cursor: 'pointer', width: '100%', height: '100%' }} // Ensuring the image fully covers the container
-          />
+
+      {validImages.length > 1 && (
+        <div className="product-gallery-thumbs">
+          {validImages.map((item, index) => (
+            <button
+              type="button"
+              key={item.image.url || index}
+              className={`product-gallery-thumb ${activeIndex === index ? "active" : ""}`}
+              onClick={() => handleThumbClick(index)}
+              aria-label={`Prikaži sliko ${index + 1}`}
+            >
+              <Image
+                src={item.image.url}
+                alt={item.image.alt || `Predogled ${index + 1}`}
+                layout="fill"
+                objectFit="cover"
+              />
+            </button>
+          ))}
         </div>
-      </div>
-      ))};
-      </div>
+      )}
+
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        contentLabel="Image Modal"
+        contentLabel="Povečana fotografija"
         style={{
           content: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.9)",
             padding: 0,
-            border: 'none',
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            zIndex: 100000, // Ensure the modal is on top
+            border: "none",
+            borderRadius: 0,
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            zIndex: 100000,
           },
           overlay: {
-            backgroundColor: 'rgba(0, 0, 0, 0.75)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 100000, // Ensure the overlay is on top
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 100000,
           },
         }}
       >
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: "relative" }}>
           <button
+            type="button"
             onClick={closeModal}
+            aria-label="Zapri"
             style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              background: 'transparent',
-              border: 'none',
-              color: 'white',
-              fontSize: '24px',
-              cursor: 'pointer',
-              zIndex: 100001, // Ensure the button is on top
+              position: "absolute",
+              top: "10px",
+              right: "14px",
+              background: "rgba(0,0,0,0.6)",
+              border: "none",
+              color: "white",
+              fontSize: "26px",
+              lineHeight: 1,
+              padding: "4px 10px",
+              cursor: "pointer",
+              zIndex: 100001,
             }}
           >
             &times;
           </button>
-          <Image
-            src={currentImage}
-            alt="Enlarged Image"
-            width={1000}
-            height={800}
-            onClick={closeModal}
-            style={{ cursor: 'pointer' }}
-          />
+          {currentImage && (
+            <Image
+              src={currentImage}
+              alt="Povečana fotografija"
+              width={1000}
+              height={800}
+              onClick={closeModal}
+              style={{ cursor: "pointer", objectFit: "contain", maxHeight: "88vh", width: "auto" }}
+            />
+          )}
         </div>
       </Modal>
     </div>
   );
-}
+};
 
 export default ProductGallerySlider;
