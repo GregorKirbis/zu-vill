@@ -39,7 +39,7 @@ export default async function Page({ params: { slug = "domov" } }) {
   }
 
   if (!page) {
-    return "SS"//notFound();
+    return notFound();
   }
 
   const { media: mediaData, layout, title, slug: url } = page;
