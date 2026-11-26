@@ -1,0 +1,51 @@
+.simple-text-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-left: 4px solid #ff5e14;
+  border-radius: 0;
+  padding: 36px 40px;
+}
+
+.simple-text-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f242c;
+  margin-bottom: 14px;
+}
+
+.simple-text-body p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #2f3540;
+  margin-bottom: 16px;
+}
+
+.simple-text-body p:last-child {
+  margin-bottom: 0;
+}
+
+.simple-text-body strong {
+  font-weight: 700;
+  color: #1f242c;
+}
+
+.simple-text-body ul {
+  margin: 12px 0 18px 20px;
+  padding: 0;
+}
+
+.simple-text-body li {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2f3540;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+  .simple-text-card {
+    padding: 24px 20px;
+  }
+  .simple-text-title {
+    font-size: 24px;
+  }
+}

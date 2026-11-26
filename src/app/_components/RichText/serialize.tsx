@@ -22,25 +22,25 @@ type Leaf = {
 const serialize = (children?: Children): React.ReactNode[] =>
   children?.map((node, i) => {
     if (Text.isText(node)) {
-      // Split the text on page breaks
-      const segments = node.text.split('\n').map((segment, index) => {
-        let text = <span key={index} dangerouslySetInnerHTML={{ __html: escapeHTML(segment) }} />;
+      const parts = node.text.split("\n");
+      const segments = parts.map((segment, index) => {
+        let text: React.ReactNode = segment;
 
         if (node.bold) {
-          text = <strong key={index}>{text}</strong>;
+          text = <strong key={`b-${index}`}>{text}</strong>;
         }
 
         if (node.code) {
-          text = <code key={index}>{text}</code>;
+          text = <code key={`c-${index}`}>{text}</code>;
         }
 
         if (node.italic) {
-          text = <em key={index}>{text}</em>;
+          text = <em key={`i-${index}`}>{text}</em>;
         }
 
         if (node.underline) {
           text = (
-            <span style={{ textDecoration: "underline" }} key={index}>
+            <span style={{ textDecoration: "underline" }} key={`u-${index}`}>
               {text}
             </span>
           );
@@ -48,17 +48,16 @@ const serialize = (children?: Children): React.ReactNode[] =>
 
         if (node.strikethrough) {
           text = (
-            <span style={{ textDecoration: "line-through" }} key={index}>
+            <span style={{ textDecoration: "line-through" }} key={`s-${index}`}>
               {text}
             </span>
           );
         }
 
-        // Add a <br> element after each segment except the last one
         return (
           <Fragment key={index}>
             {text}
-            {index < node.text.split('\n').length - 1 && <br />}
+            {index < parts.length - 1 && <br />}
           </Fragment>
         );
       });

@@ -384,8 +384,8 @@ async function run() {
     depth: 0,
   })) as any;
 
-  if (Array.isArray(footer.navItems)) {
-    const updatedFooterNav = footer.navItems.map((item: any) => {
+  if (Array.isArray(footer.navItems4)) {
+    const updatedFooterNav = footer.navItems4.map((item: any) => {
       if (item?.link?.label === "Storitve") {
         return { ...item, link: { ...item.link, label: "Servis" } };
       }
@@ -394,7 +394,7 @@ async function run() {
     await payload.updateGlobal({
       slug: "footer",
       data: {
-        navItems: updatedFooterNav,
+        navItems4: updatedFooterNav,
       },
     });
     console.log('Updated Footer menu ("Storitve" -> "Servis").');
